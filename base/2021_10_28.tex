@@ -1,0 +1,130 @@
+\newpage
+\fancyhead[R]{28 October 2021}
+\begin{theorem}[Intermediate Value Theorem, Rolle's Theorem]\label{thm:ivt}
+  Let $a<b$ and let $f$ be a continuous function on $[a,b]$ such that $f\pa{a}< f\pa{b}$. Then for all $\bar{f}\in \bra{f\pa{a},f\pa{b}}$, there exists some $c\in[a,b]$ such that $f\pa{c}= \bar{f}$.
+
+  Now let $a< b$ and let $f$ be continuously differentiable and such that $f\pa{a} = f\pa{b}$. Then there exists $c\in [a,b]$ such that $f'\pa{c} =0$.
+
+  This theorem generalizes to higher derivatives and we used it to obtain the Taylor expansion of the previous class, see also \url{https://en.wikipedia.org/wiki/Taylor%27s_theorem#Explicit_formulas_for_the_remainder}.
+\end{theorem}
+\begin{remark}
+
+\end{remark}
+\begin{definition}
+  We define the mean integrated square error,
+  \begin{equation}
+    \mathrm{MISE}\pa{\hat{f}_X} = \E\bra{\int_\R \pa{\hat{f}_X\pa{x} - f_X\pa{x}}^2 dx}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  Let $\pa{u_n}_{n\in\N}$ and $\pa{v_n}_{n\in \N}$ be two real, non-negative sequences.
+
+  We say $u_n = O\pa{v_n}$ if there exists $M\in [0,\infty)$ such that $\forall n\in \N,u_n\leq M v_n$.
+
+  Furthermore, $u_n = o\pa{v_n}$ if $\frac{u_n}{v_n}\rightarrow 0$ as $n\rightarrow\infty$.
+\end{definition}
+
+\begin{definition}
+  Let $X_n$ and $Y_n$ be two nonnegative random sequences.
+
+  We say $X_n = O_\p\pa{Y_n}$ if for all $\varepsilon>0$, there exists $M\in [0,\infty)$ such that for all $n\geq n_0$,
+  \begin{equation}
+    \p\pa{X_n \geq M Y_n}\leq \varepsilon.
+  \end{equation}
+\end{definition}
+Sometimes, it is easier to prove that $\abs{\hat{f}_X\pa{x}-f_X\pa{x}}= O_\p \pa{n^{-\frac{\beta}{2\beta +1}}}$. Indeed, we need to show
+\begin{equation}
+n^{\frac{\beta}{2\beta +1 }} \abs{\hat{f}_X\pa{x}-f_X\pa{x}} = O_\p\pa{1}
+\end{equation}
+Let $M>0$
+\begin{equation}
+  \p\pa{\frac{n^{\frac{\beta}{2\beta +1 }}}{M} \abs{\hat{f}_X\pa{x}-f_X\pa{x}}\geq 1} \leq \frac{1}{M^2}\underbrace{n^{\frac{2\beta}{2\beta +1 }}\E\bra{\pa{\hat{f}_X\pa{x}-f_X\pa{x}}^2}}_{=O\pa{1}}
+\end{equation}
+
+\begin{theorem}\label{thm:1}
+  Assume $K$ satisfies the assumptions from \Cref{prop:1,prop:2} and for some $\alpha\geq 0$, $h= \alpha n^{-\frac{1}{2\beta +1 }}$. Then
+  \begin{equation}
+    \sup_{x\in \R}\sup_{f_X\in \calp\pa{\beta,L}}\E\bra{\pa{\hat{f}_X\pa{x}- f_X\pa{x}}^2}\leq C_\ast n^{-\frac{2\beta}{2\beta + 1}},
+  \end{equation}
+  where $C_\ast$ only depends on $\beta,L,\alpha$ and $K$.
+\end{theorem}
+\begin{proof}
+  We need to show that for all $x\in\R$, for all $f_X\in \calp\pa{\beta,L}$, $f_X\pa{x}\leq f_{\max}<\infty$ for some well-chosen $f_{\max}$.
+
+  Following the proof of \Cref{prop:2}, where we take $h=1$ and $K=K_\ast$ to be a bounded kernel of order $\ell$, we obtain for all $x$
+  \begin{equation}
+  \abs{  \int_\R K_{\ast}\pa{z-x}f_X\pa{z} dz - f_X\pa{x}} \leq C_1 h^\beta = C_1,
+  \end{equation}
+  where $C_1$ depends on $\beta$ and $L$.
+
+  Thus, for all $x$ and for all $f_X\in\calp\pa{\beta,L}$, by the triangle inequality
+  \begin{equation}
+  \begin{split}
+  \abs{f_X\pa{x}}&\leq C_1 + \abs{\int_\R K_{\ast}\pa{z-x}f_X\pa{z} dz}\\
+  &\leq  C_1 + \int_\R \abs{K_{\ast}\pa{z-x}} f_X\pa{z} dz \\
+  &\leq C_1 + \norm{K_\ast}_\infty \int f_X\pa{z} dz
+  \end{split}
+  \end{equation}
+\end{proof}
+
+\begin{remark}
+  We can show that there exists $C_{\ast\ast}$ such that
+  \begin{equation}
+    \inf_{\hat{f}_X}\sup_{f_X \in \calp\pa{\beta,L}} \E\bra{\abs{\hat{f}_X\pa{x}-f_X\pa{x}}^2}\geq C_{\ast\ast} n^{-\frac{2\beta}{2\beta +1}}
+  \end{equation}
+  For this, read pages 16-19 in \cite{tsybakov}. This is a type of \textbf{minimax} lower bound.
+\end{remark}
+
+\begin{remark}
+  In the setup of \Cref{thm:1}, $h$ depends on $\beta$ and $L$. Is it possible to construct an estimator that has the same bound on the risk but whose construction is independent of $\beta$ and $L$?
+
+  The answer is yes and no: if you are estimating under $\MSE\pa{x}$, then it is only possible to achieve a rate $\pa{\frac{\log n}{n}}^{\frac{2\beta}{2\beta +1}}$.
+\end{remark}
+
+\subsection{Unbiased risk estimation, cross-validation}
+Let us write
+\begin{equation}
+\begin{split}
+\mathrm{MISE}\pa{h} &= \E\bra{\int_\R \pa{\hat{f}^h_X\pa{x}-f_X\pa{x} }^2dx}\\
+&= \underbrace{\E\bra{\int_\R \pa{\hat{f}^h_X \pa{x}}^2 dx - 2\int_\R \hat{f}^h_X\pa{x} f_X\pa{x}dx }}_{=I\pa{h}} + \int_\R f_X^2\pa{x}dx
+\end{split}
+\end{equation}
+\cite{rudemo} introduced
+\begin{equation}
+  \widehat{\mathrm{CV}}\pa{h} = \int_\R \hat{f}_X^2 \pa{x}dx - \underbrace{\frac{2}{n} \sum_{i=1}^n \hat{f}_{X,-i}\pa{X_i}}_{=\hat{A}},
+\end{equation}
+where $\hat{f}_{X,-i} = \frac{1}{\pa{n-1}h} \sum_{j=1,j\neq i}^n K\pa{\frac{X_j-x}{h}}$. The cross-validated bandwidth is
+\begin{equation}
+  \hat{h}_{\mathrm{CV}} = \argmin_{h>0 }\widehat{\mathrm{CV}}\pa{h}
+\end{equation}
+
+We claim
+\begin{equation}
+  \frac{1}{2}\E\bra{\hat{A}}= \E\bra{\int_\R \hat{f}_X\pa{x} f_X\pa{x} dx}
+\end{equation}
+
+We have
+\begin{equation}
+\begin{split}
+  \E\bra{\hat{f}_{X,-1}\pa{X_1}} &= \E_{\p_{X_2}\otimes  \cdot\otimes \p_{X_n}}\bra{\int_\R \hat{f}_{X,-i}\pa{x}f_X\pa{x} dx} \\
+  &= \E\bra{\frac{1}{\pa{n-1} h}\sum_{j=2}^n \int_\R K\pa{\frac{X_j-x}{h}}f_X\pa{x} dx}\\
+  &=\frac{1}{h} \int_\R\int_\R K\pa{\frac{z-x}{h}} f_X\pa{z} f_X\pa{x} dz dx
+  \end{split}
+\end{equation}
+As an exercise, show that this yields the claim.
+
+\begin{theorem}[Dalelane 05]\label{thm:dalelane}
+  Let $f_{\max}$ be such that for all $x$, $f_X\pa{x}\leq f_{\max} <\infty$. Assume the kernel $K$ is such that
+  $\int_\R K^2\pa{u}du<\infty$. $\F\bra{K}\geq 0$ and $\mathrm{supp}\pa{\F\bra{K}}\subseteq [-1,1]$. Then $\hat{f}_X^\ast = \hat{f}_X^{h_{\mathrm{CV}}}$ is such that for all $0<\delta <1$, for all $n\geq 1$,
+  \begin{equation}
+    \E\bra{\int_\R \pa{\hat{f}^\ast_X \pa{x} - f_X\pa{x}}^2dx} \leq \pa{1+\frac{C}{n^\delta}} \min_{h>\frac{1}{n}} \E\bra{\int \pa{\hat{f}_X^h\pa{x} - f_X\pa{x}}^2 dx} + \frac{C\pa{\log n}^{\frac{\delta}{2}}}{n^{1-\delta}}
+  \end{equation}
+\end{theorem}
+% Next, we will do cross-validation.
+%
+% Consider a linear regression model
+% \begin{equation}
+%   Y_i = X_i\beta_i + \varepsilon_i,
+% \end{equation}
+% where $\beta_i$ is random and $X$ is independent from $\pa{\beta,\varepsilon}$. We would like to estimate the density of $\beta_i$.

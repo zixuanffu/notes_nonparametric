@@ -1,0 +1,154 @@
+\newpage
+\fancyhead[R]{30 November 2021 \& 2 December 2021}
+See also \cite{lehmann2005testing}.
+
+Recall that our probability space is $\pspace$.
+
+\begin{theorem}[Glivenko-Cantelli Theorem]
+  Let $\hat{F}_X\pa{x} = \frac{1}{n} \sum_{i=1}^n \one_{]-\infty,x]}\pa{X_i}$. If $X_i$ are iid, then
+  \begin{equation}
+    \sup_{x\in \R} \abs{\hat{F}_X\pa{x} - F_X\pa{x}}\rightarrow 0
+  \end{equation}
+  almost surely, as $n\rightarrow \infty$.
+\end{theorem}
+Without the $\sup$, this is a special case of the law of large numbers. Note that the integrability conditions follow from boundedness.
+
+This implies that on an event $\tilde{\Omega}\in \F$ such that $\p\pa{\tilde{\Omega}}=0$, $\hat{F}_X$ converges weakly (in distribution) to $F_X$.
+
+\begin{theorem}
+ Let $\theta\pa{\p_x}$ be the mean of $\p_X$ and $\calp$ denote the set of all distributions on $\R$ with a finite nonzero variance. Consider the root $R_n = \sqrt{n}\pa{\bar{X}_n - \theta\pa{\p_X}}$. Let $\pa{\p_n}_{n\geq 1}$ be a nonrandom sequence of distributions such that $\p_n$ converges in distribution to $\p_X$. Moreover, assume $\theta\pa{\p_n}\rightarrow \theta\pa{\p_X}$, and $\sigma^2\pa{\p_n}\rightarrow \sigma^2\pa{\p_X}$. Then:
+ \begin{itemize}
+   \item $J_n \pa{x,\p_n}$ converges weakly to $J\pa{x,\p_X} = \Phi \pa{\frac{x}{\sigma\pa{\p_X}}}$, where $\Phi$ is the cdf of a $\caln\pa{0,1}$.
+   \item $J_n^{-1}\pa{1-\alpha, \p_n} = \inf_{x\in \R} \set{J_n \pa{x,\p_n}\geq 1-\alpha}$ converges to $J^{-1}\pa{1-\alpha,\p_X} = q_{1-\alpha} \sigma \pa{\p_X}$, where $q_{1-\alpha}$ is the $1-\alpha$-quantile of the $\caln\pa{0,1}$.
+ \end{itemize}
+\end{theorem}
+
+\Cref{thm:bootstrap} is the same with almost sure convergence. The Glivenko-Cantelli theorem and the previous theorem together allow to prove \Cref{thm:bootstrap}.
+
+\begin{proof} Let $n$ be fixed.
+  Define $X_{i,n}$, $i=1,\ldots, n$, an iid sequence of random variables with distribution $\p_n$. We claim that $\sqrt{n}\pa{\bar{X}_{n,n}- \theta\pa{\p_n}}$ converges in distribution to $\caln \pa{0,\sigma\pa{\p_X}}$, where $X_{n,n} = \frac{1}{n}\sum_{i=1}^n X_{i,n}$.
+
+  Note that for all $i$, $X_{i,n}\indist{\rightarrow} X$, by assumption. Using Slutsky's theorem (note that $\theta\pa{\p_n}$ and $\sigma\pa{\p_n}$ are not even random), we can deduce that $Z_{i,n} \defeq \frac{X_{i,n}- \theta\pa{\p_n}}{\sigma\pa{\p_n}}\indist{\rightarrow} \frac{X- \theta\pa{\p_X}}{\sigma\pa{\p_X}}\defeq Z$, using the fact that $\sigma^2\pa{\p_n}\rightarrow \sigma^2\pa{\p_X}$ and $\theta\pa{\p_n}\rightarrow \theta\pa{\p_X}$.
+
+  Now by monotone convergence,
+  \begin{equation}
+    \lim_{\lambda\rightarrow \infty }\E\bra{Z^2\one_{\set{\abs{Z}\leq \lambda }}} = \E\bra{Z^2} =1,
+  \end{equation}
+  so that
+  \begin{equation}
+    \lim_{\lambda\rightarrow \infty} \E\bra{Z^2\one_{\set{\abs{Z}>\lambda}}} = 0.
+  \end{equation}
+
+  Let us show that
+  \begin{equation}
+    Y_{i,n}\defeq  Z_{i,n}^2 \one_{\set{\abs{Z_{i,n}}\leq \lambda}}\indist{\rightarrow} Z^2\one_{\set{\abs{Z}\leq \lambda}}\defeq Y.
+  \end{equation}
+
+  If $x< 0$, $\p\pa{Y_n\leq x} = 0 = \p\pa{Y\leq x}$. If $x0\leq x \leq \lambda^2 $,
+  \begin{equation}
+  \begin{split}
+    \p\pa{Y_n\leq x } &= \p\pa{Z_{i,n}^2 \one_{\set{Z_{i,n}^2 \leq \lambda^2 }}\leq x} \\
+    &= \p\pa{Z_{i,n}^2 \leq x}\\
+    &=\p\pa{Z_{i,n}\leq \sqrt{x}}- \p\pa{Z_{i,n}\leq -\sqrt{x}} \\
+    &\rightarrow \p\pa{Y\leq x},
+    \end{split}
+  \end{equation}
+  where in the last step, we first obtain the same expression as for $Z_{i,n}$, but for $Z$, and then we do the steps backwards.
+
+  If $x>\lambda$, then
+  \begin{equation}
+  \p\pa{Y_n\leq x} = \p\pa{Z_{i,n}^2 \one_{\set{\abs{Z_{i,n}}\leq \lambda }}} = 1 = \p\pa{Z^2 \one_{\set{\abs{Z}\leq \lambda}}\leq \lambda} = \p\pa{Y\leq x}
+  \end{equation}
+  Hence, for all $x\in \R$, $\p\pa{Y_{i,n}\leq x}\rightarrow \p\pa{Y\leq x}$. This concludes the proof of $Y_n\indist{\rightarrow} Y$.
+
+  Our goal is to show that \begin{equation}
+  \lim_{n\rightarrow\infty} \underbrace{\E\bra{Z_{i,n}^2 \one_{\set{\abs{Z_{i,n}> \lambda}}}}}_{1-\E\bra{Z_{i,n}^2 \one_{\set{\abs{Z_{i_n}}\leq\lambda}}}} = \E\bra{Z^2\one_{\set{\abs{Z}>\lambda}}}
+  \end{equation}
+
+  By the convergence in distribution (see the Portemanteau theorem, e.g.~on Wikipedia or Theorem 29.1 in \cite{bill}), we know that for all bounded and continuous functions $\varphi$,
+  \begin{equation}
+    \E\bra{\varphi\pa{Z_{i,n}^2 \one_{\set{\abs{Z_{i,n}}\leq \lambda }}}}\rightarrow \E\bra{\varphi\pa{Z^2 \one_{\set{\abs{Z}\leq \lambda}}}}
+  \end{equation}
+  As the argument of $\varphi$ here is contained in $[0,\lambda^2]$, this works especially for any bounded continous function that is the identity on $[0,\lambda^2]$.
+
+  Let $\eta>0$. Firstly, there exists $\lambda_0$ such that $\E\bra{Z^2 \one{\set{\abs{Z}>\lambda_0}}}\leq\frac{\eta}{2}$.
+
+  Moreover, there exists $ n_0 $ such that for all $ n\geq n_0$,
+  \begin{equation}
+  \E\bra{Z^2_{i,n} \one_{\set{\abs{Z_{i,n}}>\lambda_0}}}
+  \leq \E\bra{Z^2 \one_{\set{\abs{Z}>\lambda_0}}} + \frac{\eta}{2}
+  \leq \theta
+  \end{equation}
+
+  Thus, for all $n\geq \max\pa{n_0, \pa{\frac{\lambda_0}{\varepsilon}}^2}$,
+  \begin{equation}\label{eq:lindeberg}
+    0 \leq \E\bra{Z^2_{i,n} \one_{\set{\abs{Z_{i,n}}>\sqrt{n}\varepsilon}}} \leq \E\bra{Z^2_{i,n} \one_{\set{\abs{Z_{i,n}}>\lambda_0}}} \leq \eta.
+  \end{equation}
+
+  This is the Lindeberg condition (27.8) in \cite{bill}. Using Theorem 27.2 in \cite{bill}, a triangular central limit theorem, $\sqrt{n}\bar{Z}_{n,n}\indist{\rightarrow }\caln\pa{0,1}$, so using Slutsky's theorem again,
+  \begin{equation}
+    \sqrt{n} \pa{\bar{X}_n - \theta\pa{\p_n}}\indist{\rightarrow} \caln\pa{0,\sigma^2\pa{\p_X}}.
+  \end{equation}
+
+  Next, we show the statement about the quantiles:
+  \begin{equation}
+  J_n^{-1}\pa{1-\alpha, \p_n} = \inf\set{x\in\mathbb{R}:J_n\pa{x,\p_n} \geq 1-\alpha}\rightarrow q_{1-\alpha}\sigma\pa{\p_x}
+  \end{equation}
+
+  To prove this, we use i) of Lemma 11.2.1 in \cite{lehmann2005testing}, which states:
+  \begin{lemma}[Lemma 11.2.1]
+    Let $F_n$ be a sequence of cdfs on the real line converging weakly to $F$, which is continuous and strictly increasing at $y = F^{-1}\pa{1-\alpha}$. Then $F_n^{-1} \pa{1-\alpha} \rightarrow F^{-1}\pa{1-\alpha}$.
+  \end{lemma}
+  \begin{proof}[Proof of the Lemma]
+    Let $\eta >0 $, $0< \varepsilon \leq \eta$ such that $F$ is continuous at $y-\varepsilon$ and $y+\varepsilon$. Then $F_n\pa{y + \varepsilon} \rightarrow F\pa{y-\varepsilon}<1-\alpha$ and $F_n \pa{y+\varepsilon} \rightarrow F\pa{y+\varepsilon}  > 1-\alpha$.
+
+    Hence, there exists $m$ such that for $n\geq m$,
+    \begin{equation}
+      y-\varepsilon \leq F_n^{-1} \pa{1-\alpha}\leq y + \varepsilon.
+    \end{equation}
+    Letting $\varepsilon\rightarrow 0$, the result follows.
+  \end{proof}
+  This concludes the proof of the theorem.
+  % It remains to show \cref{eq:lindeberg}. We have
+  % \begin{equation}
+  %       \E\bra{Z^2_{i,n}\one_{\set{\abs{Z_{i,n}}> \varepsilon \sqrt{n}}}} =\underbrace{ \E\bra{Z_{i,n}^2}}_{=1} - \E\bra{Z_{i,n}^2 \one_{\set{\abs{Z_{i,n}}\leq \varepsilon \sqrt{n}}}}.
+  % \end{equation}
+  % To analyze the second term we use that since $\p_n$ converges weakly (in distribution) to $\p_X$, $Z_{i,n}$ converges in distribution to $Z = \frac{X- \theta\pa{\p_X}}{\sigma\pa{\p_X}}$. Now because of the convergence in distribution (see the Portemanteau theorem, e.g.~on Wikipedia or Theorem 29.1 in \cite{bill}), for a bounded measurable function $\varphi$, $\E\bra{\varphi\pa{Z_{i,n}}}\rightarrow \E\bra{\varphi\pa{Z}}$. The function applied on $Z_{i,n}$ in the second term is measurable so that the term converges to $\E\bra{Z^2 \one_{\set{\abs{Z}\leq \varepsilon \sqrt{n}}}}$. But now $\lim_{\lambda \rightarrow \infty} \E\bra{Z^2 \one_{\abs{Z}>\lambda }}$.
+  %
+  % Thus $\sqrt{n}\rightarrow \bar{Z}_{n,i}$ converges to $\caln \pa{0,1}$ under $\p_n$. We conclude using Slutsky's theorem and $\sigma \pa{\p_n}\rightarrow \sigma\pa{\p_X}$.
+  %
+  % We need to fix $\lambda$ and consider $\varphi_\lambda$
+\end{proof}
+
+\begin{remark}
+  Similar results hold for the standarized root $\frac{\sqrt{n}\pa{\bar{X}_n}-\theta\pa{\p_X}}{\hat{\sigma}_n}$, where $\hat{\sigma}_n \rightarrow \sigma\pa{\p_X}$
+\end{remark}
+
+  Let \begin{equation}
+  \begin{split}
+  C^1_n &= \set{\theta \in \R : R_n\pa{X_1,\cdots,X_n,\theta}\leq J_n^{-1}\pa{1-\alpha,\hat{\p}_X}}\\
+  C_n^2 &= \set{\theta \in \R : J_n^{-1}\pa{\frac{\alpha}{2}, \hat{\p}_X}\leq R_n\pa{X_1,\ldots,X_n,\theta}\leq J_n^{-1} \pa{1-\frac{\alpha}{2},\hat{\p}_X}}\\
+  C_n^3 &= \set{\theta \in \R : \abs{R_n\pa{X_1,\ldots,X_n,\theta} }\leq J_n^{-1}\pa{1-\alpha,\hat{\p}_X}}
+  \end{split}
+  \end{equation}
+  $C_n^2$ is an equi-tailed confidence set. $C_n^3$ is a symmetric confidence set. Note that
+  \begin{equation}
+    J_n^{-1}\pa{\frac{\alpha}{2},\hat{\p}_X}\leq \sqrt{n}\frac{\bar{X}_n-\theta}{\hat{\sigma}_n}\leq  J_n^{-1}\pa{1-\frac{\alpha}{2},\hat{\p}_X}.
+  \end{equation}
+  So
+  \begin{equation}
+  C_n^2 = \bra{ \bar{X}_n - \frac{\hat{\sigma}_n}{\sqrt{n}} J_n^{-1}\pa{1-\frac{\alpha}{2}, \hat{\p}_X}, \bar{X}_n + \frac{\hat{\sigma}_n}{\sqrt{n}}J_n^{-1} \pa{\frac{\alpha}{2},\hat{\p}_X} }
+  \end{equation} and
+  \begin{equation}
+    \p\pa{\theta \not\in C_n^2} \rightarrow \frac{\alpha}{2} + \frac{\alpha}{2}
+  \end{equation} so $C^2_n$ is an asymptotically valid confidence set.
+  \begin{theorem}
+    Under regularity conditions if $R_n \indist{\rightarrow} \caln\pa{0,\sigma^2}$
+
+    \begin{equation}
+    J_n\pa{x,\p_X} = \Phi\pa{\frac{x}{\sigma}} + \frac{1}{\sqrt{n}}g_1\pa{x,\p_X} + \frac{1}{n}g_2\pa{x,\p_X} + \mathcal{O}\pa{n^{-\frac{3}{2}}},
+    \end{equation}
+    where $g_1$ is even and $g_2$ is odd. $g_1$ and $g_2$ are differentiable functions of $x$ and continuous in $\p_X$ (where the distance is the sup norm on cdfs).
+
+    This is an Edgeworth expansion.
+  \end{theorem}

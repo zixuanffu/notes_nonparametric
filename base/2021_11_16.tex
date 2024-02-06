@@ -1,0 +1,105 @@
+\newpage
+\fancyhead[R]{16 November 2021}
+
+\begin{remark}
+  To define the $\MISE$, we would like
+  \begin{equation}
+    \E\bra{\norm{\hat{f}_X - f_X}^2_2} < \infty.
+  \end{equation}
+  We assume $f_X\in L^2\pa{\R}$. We would like as well $\hat{f}_X\in L^2\pa{\R}$. This is true if $K\in L^2\pa{\R}$.
+
+  Indeed,
+  \begin{equation}
+  \begin{split}
+    \norm{\hat{f}_X}_2^2 &\leq \frac{2^{n-1}}{\pa{nh}^2} \sum_{i=1}^n \int_\R K\pa{\frac{X_i -x}{h}}^2 dx \\
+    &\leq \frac{2^{n-1}}{nh} \int_{\R} K^2\pa{u} du <\infty.
+    \end{split}
+  \end{equation}
+  The idea behind this inequality is $\pa{a+b}^2 \leq 2 \pa{a^2 + b^2}$, and then by induction, $\pa{\sum_{i=1}^n a_i }^2 \leq 2^{n-1} \sum_{i=1}^n a_i^2$.
+\end{remark}
+
+\begin{theorem}
+  Let $f_X\in L^2\pa{\R}, K\in L^2\pa{\R}$ be a symmetric kernel such that
+  \begin{equation}\label{eq:tocheck}
+    \sup_{w\in \R\setminus \set{0}} \frac{\abs{1- \F \bra{K} \pa{w}}}{\abs{w}^{\beta'}}\leq A <\infty
+  \end{equation}
+  for some $\beta',A>0$. Then
+  \begin{equation}
+    \sup_{f_X\in \calp_S \pa{\beta, L}} \E\bra{\norm{\hat{f}_X - f_X}^2_2}\leq C n^{-\frac{2\tilde{\beta}}{2\tilde{\beta}+1}},
+  \end{equation}
+  where $\tilde{\beta}=\min \set{\beta,\beta'}$, if $h= \alpha n^{-\frac{1}{2\tilde{\beta} +1}}$ for some $\alpha >0$ and $C$ is a constant which only depends on $L,\alpha,A,K$.
+\end{theorem}
+
+\begin{example}\label{exa:fourier_kernel}
+\begin{enumerate}
+  \item Gaussian kernel $K\pa{u} = \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}}$, $\F\bra{K}\pa{u} = e^{-\frac{u^2}{2}}$. We have
+  \begin{equation}
+    \frac{\abs{1-e^{-w^2 /2 }}}{\abs{w}^{\beta'}} \leq \begin{cases} \abs{w}^{-\beta'}, &\abs{w}\geq 1\\
+    \frac{w^2/2}{\abs{w}^{\beta'}}, &\abs{w}\leq 1 \end{cases}
+  \end{equation}
+  so \cref{eq:tocheck} holds if $\beta'\leq 2$, else the $\sup$ is $\infty$.
+  \item The sinc kernel $K\pa{u} = \frac{\sin\pa{u}}{\pi u}, \F\bra{K}\pa{w}= \one_{\abs{w}\leq 1}$. We have
+  \begin{equation}
+    \frac{\abs{1- \F\bra{K}\pa{w}}}{\abs{w}^{\beta'}} \leq \begin{cases}
+      \abs{w}^{-\beta'}, & \abs{u}> 1\\
+      0, & \abs{u}\leq 1,
+    \end{cases}
+  \end{equation}
+  so \cref{eq:tocheck} holds for all $\beta'$. Such a kernel is called an \textbf{infinite power kernel} or \textbf{superkernel}.
+  \item Let \begin{equation}
+  \F\bra{K}\pa{w} = \begin{cases}
+    0, & \abs{w} >a\\
+    1, & \abs{w}\leq b \\
+    \text{linear}, &\text{otherwise},
+  \end{cases}
+  \end{equation}
+  a trapeze. Then \cref{eq:tocheck} holds for all $\beta'$.
+\end{enumerate}
+\end{example}
+A corollary of the Theorem that we have seen for cross-validation is
+\begin{corollary}
+  Let $K$ be the sinc kernel, then
+  \begin{equation}
+    \sup_{f_X\in \calp_S\pa{\beta,L}}\E\bra{\norm{\hat{f}_X^{\CV} - f_X}_2^2 }\leq Cn^{-\frac{2\beta}{2\beta +1}}
+  \end{equation}
+  for all $\beta > \frac{1}{2}, L>0$, where $C$ only depends on $\beta$ and $L$.
+\end{corollary}
+Some people have shown:
+\begin{proposition}
+  \begin{equation}
+    \inf_{\hat{f}}\sup_{f_X\in \calp_S\pa{\beta,L}}\E\bra{\norm{\hat{f}_X - f_X}^2_2}\geq C_\ast n^{-\frac{2\beta}{2\beta +1}}
+  \end{equation}
+  for some absolute constant $C_\ast$.
+\end{proposition}
+
+This means that $n^{-\frac{2\beta}{2\beta +1 }}$ is the ``minimax'' optimal rate of convergence and the cross-validated estimator is minimax adaptive (i.e.~we can construct it with the data only).
+
+\begin{remark}
+  Let us write $K_2$ for the trapeze (in Fourier space) and $K_1$ for the sinc Kernel (see \Cref{exa:fourier_kernel}). Then
+  \begin{equation}
+    K_2 = \frac{1}{2\pi} \F\bra{\F\bra{K_1}\ast F\bra{K_1}} = \frac{1}{2\pi} \F\bra{\F\bra{K_1}}\F\bra{\F\bra{K_1}} = 2\pi K_1^2\pa{u} = 2\pi \pa{\frac{\sin u}{\pi u}},
+  \end{equation}
+  which is in $L^1\pa{\R}\cap L^2\pa{\R}$.
+\end{remark}
+
+\begin{remark}
+  $Y = \alpha + \beta^T X$, where $\alpha,\beta \ci X$. This is a type of exogeneity condition. We can show that
+  \begin{equation}
+    \phi_{Y|X=x} \pa{w} = \E\bra{e^{iw\pa{\alpha + \beta^T X}}\middle| X=x} = \E\bra{e^{iw\pa{\alpha + \beta^T x}}} = \F \bra{f_{\alpha, \beta}}\pa{w,wx}.
+  \end{equation}
+  We have
+  \begin{equation}
+    \F\bra{f_{\alpha,\beta}} = \int_{\R^{k+1}} e^{i\pa{wa + \pa{wx}^T b}} f_{\alpha, \beta}\pa{a,b} da db.
+  \end{equation}
+  $f_{\alpha,\beta}$ is the parameter of interest and the left-hand side can be estimated with the data. This is in ``inverse problem''.
+\end{remark}
+\begin{remark}
+  \begin{equation}
+    Y= Y_0 + D\underbrace{\pa{Y_1-Y_0}}_{\text{treatment effect}}
+  \end{equation}
+  $\pa{Y,D}$ is observed, $\pa{Y_0,Y_1}$ are the potential outcomes. $D$ is binary. Assuming $Y_0 \ci Y_1 - Y_0$ and $\pa{Y_0, Y_1-Y_0}\ci D$.
+
+  In sample 1, $D=0$. Then $Y=Y_0$ and $f_{Y_0}$ can be estimated.
+
+  In sample 2, $D=1$. Then $Y = Y_1 = \underbrace{Y_0}_{\varepsilon} + \underbrace{\pa{Y_1 -Y_0}}_{X}$. This way, $f_X = f_{Y_1 - Y_0}$ can be estimated, too, as seen in \Cref{rem:fourier_density_estimation}.
+\end{remark}

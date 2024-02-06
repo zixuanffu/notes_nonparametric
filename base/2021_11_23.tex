@@ -1,0 +1,109 @@
+\newpage
+\fancyhead[R]{23 November 2021}
+
+The previous approach is based on \textit{linear approximation}, non-linear approximation takes the form: $\sum_{j=1}^T\tau(\underbrace{c_j(f)}_{=\angs{f,e_j}})e_j$ where $\tau$ is a certain non-linear function.
+
+Typically,
+\begin{itemize}
+\item $\tau_\rho \pa{x} = \one_{\set{\abs{x}\geq \rho}}$, where $\rho$ is a thresholding function. This is the hard thresholding function.
+\item $\tau_\rho \pa{x} = x \max \pa{1-\frac{\rho}{\abs{x}},0}$. This is the soft thresholding function.
+\end{itemize}
+As a result, some coefficients are set to $0$ and the others may be shrinked towards $0$. We are adding bias in order to shrink variance.
+
+$\rho$ could be estimated and it is chosen trying to minimize the BIC criterium. It should be proportional to the standard error of the coefficient. $e_j$ are usually wavelets.
+
+\fancyhead[L]{Nonparametric Regression}
+\section{Estimation of a Regression Function}
+
+We assume $Y=f(X)+\varepsilon$, with $\E\bra{\varepsilon |X}=0$ and $\E\bra{\abs{\varepsilon}}<\infty$, where $f$ is the conditional expectation function, also called the regression function.
+
+\begin{definition}
+  The average marginal effect of $X$ on $Y$ is $\E\bra{f'\pa{X}}$ provided the expectation is defined.
+\end{definition}
+
+The analogue of the kernel density estimators is the following.
+\subsection{Local Polynomial Estimator}
+Let $f$ belong to $\Sigma\pa{\beta,L}$. For $z$ close to $x$, the Taylor formula gives:
+\begin{equation}
+\begin{split}
+ f(z)&=f(x)+f'(x)(z-x)+\cdots +\frac{f^{(\ell)}\pa{x}}{\ell !}\pa{z-x}^\ell +o\pa{\abs{z-x}^\ell}\\
+ &= \theta\pa{x}^T U\pa{z-x} + o\pa{\abs{z-x}^\ell},
+\end{split}
+\end{equation}
+where $\theta\pa{x} = \pa{f\pa{x},f'\pa{x},\ldots, f^{\pa{\ell}}\pa{x}}^T$ and $U\pa{x} = \pa{1,u,\frac{u^2}{2},\ldots, \frac{u^\ell}{\ell !}}^T$. The goal is to minimize
+\begin{equation}
+  \sum_{i:\abs{X_i -x}\leq h} \pa{Y_i - \theta^T U\pa{X_i - x}}^2.
+\end{equation}
+More generally, take \begin{equation}
+\hat\theta \pa{x} = \argmin_\theta \set{ \sum_{i=1}^n \pa{Y_i - \theta^T U\pa{X_i-x}}^2 K\pa{\frac{X_i-x}{h}} }
+\end{equation}
+The idea is that we replaced the indicator function with the kernel and, thus, the estimator for $f\pa{x}$ is $\hat{f}\pa{x}=U\pa{0}^T\hat{\theta}\pa{x}$, which is usually referred to as $\mathrm{LP}\pa{\ell}$. $\ell$ is the order of the estimator.
+
+The estimator for $f'\pa{x}$ is $\hat{f'}\pa{x} = U'\pa{0}^T \hat{\theta}\pa{x}$, and so on.
+
+\begin{example}[$\mathrm{LP}\pa{0}$ estimator]
+Denote by $U_i=U\pa{X_i-x}$, $K_i=K\pa{\frac{X_i-x}{h}}$. We are interested in
+\begin{equation}
+  \min_\theta \set{\sum_{i=1}^n \pa{Y_i - \theta }^2 K_i}.
+\end{equation}
+The result is
+\begin{equation}
+  \hat{f}\pa{x} = \frac{\sum_{i=1}^n Y_i K_i}{\sum_{i=1}^n K_i},
+\end{equation} which is the \textbf{Nadaraya-Watson} estimator.
+\end{example}
+
+$\frac{1}{h^n}\sum_{i=1}^n K_i$ is an estimator of $f_X\pa{x}$. This may be close to $0$ by chance or because $f_X\pa{x}$ is close to $0$.
+For this reason, the theoretical results usually assume $f_X\pa{x}\geq c\,\forall x \mathrm{(A)}$.
+In practice, it may be useful to trim the denominator and use
+\begin{equation}
+  \frac{\sum_{i=1}^n Y_i K_i}{\max\pa{\sum_{i=1}^n K_i, \rho}},
+\end{equation}
+where $\rho$ is called a \textit{trimming factor}.
+
+Even under assumption (A) the kernel relies on half a sample over a window near the boundaries. This is called the \textit{boundary effect} and $\mathrm{LP}(1)$ handles this problem.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{lin_lepski_triangle.png}
+  \caption{\centering Boundary Effect with Nadaraya-Watson Estimator - Blue Line: Estimator, Orange Line: True Function, $Y = X + \varepsilon$}
+\end{figure}
+
+The $\mathrm{LP}\pa{\ell}$ estimator can be written as
+\begin{equation}
+  A\pa{X_1,\ldots, X_n}\begin{pmatrix} Y_1 \\ \vdots \\ Y_n\end{pmatrix},
+\end{equation}
+if a certain matrix is invertible. We say that it is a linear estimator.
+\subsection{Spline Estimator}
+\begin{equation}
+\hat {f} = \argmin \bigg\{\frac{1}{n} \sum_{i=1}^n\pa{Y_i-f\pa{X_i}}^2+\underbrace{\lambda\int\pa{f^{\pa{\ell }}\pa{x} }^2 dx}_{\text{penalty}}\bigg\}
+\end{equation} where $\lambda$ is a parameter. It turns out that, under some assumptions, the solution is a smooth piecewise polynomial.
+
+\begin{assumption}[SP]
+The points $X_i$ are distinct and $0< X_1 < \cdots < X_n <1$ and that $n\geq \ell$.
+\end{assumption}
+The formula is in Tsybakov for a closed-form solution, which is a smooth (to some degree) piecewise polynomial function of a degree depending on $\ell$.
+
+\subsection{Nonparametric Least Squares}
+We try to estimate a density (or approximation of the latter, think of last lecture) of the form
+\begin{equation}
+f^p_\theta\pa{x} = \sum_{k=1}^p \theta_k f_k\pa{x}.
+\end{equation}
+The goal is to solve
+\begin{equation}
+  \min_{\theta} \set{\frac{1}{n}\sum_{i=1}^n \pa{Y_i - f_\theta \pa{X_i}}^2 },
+\end{equation}
+whose solution is the estimator $\hat{\theta}$.
+
+Using many functions $f_k$ could yield a better approximation but requires to work in a longer dimension $p$ so gives a larger variance.
+
+Thus, it is possible to use the \textbf{penalized NPLS} which is given by:
+
+\begin{equation}
+\min_{\theta} \frac{1}{n}\sum_{i=1}^{n}\pa{Y_i-f_\theta\pa{X_i}}^2+\lambda\mathrm{pen}(\theta)
+\end{equation}
+where some possible penalizations are:
+\begin{itemize}
+  \item $\mathrm{pen}\pa{\theta} = \text{ number of nonzero }\theta $,
+  \item $\mathrm{pen}\pa{\theta} = \sum \abs{\theta_k}$ is Lasso,
+  \item $\mathrm{pen}\pa{\theta} = \sum \theta_k^2$ is Ridge
+\end{itemize}

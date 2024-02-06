@@ -1,0 +1,101 @@
+\newpage
+\fancyhead[R]{25 November 2021}
+{\color{red}The extra material extending the previous lecture is missing in these notes.}
+
+\section{Bootstrap}
+Bootstrap is used in the case of small samples, if we do not trust the asymptotic theory.
+\subsection{Confidence Sets}
+Here, we consider Bootstrap in case of estimation of the mean. {\color{red}For next week, read the section on Bootstrap in \cite{Hansen_econometrics}.}
+
+Let $\pa{X_i}_{i=1}^n$ be an iid sample with distribution $\p_X\in\calp$, where $\calp$ is a family of distributions (e.g.~parametric, semiparametric, nonparametric). Note that we write $\p_X\pa{B} = \p\pa{X_i^{-1}\pa{B}}$. We are interested in making inferences about the parameter
+\begin{equation}
+  \theta\pa{\p_X} \in \Theta = \set{\theta\pa{P}: P\in \calp}.
+\end{equation}
+
+A confidence set for $\theta\pa{\p_X}$ is a random set $c_n = c_n \pa{X_1,\ldots, X_n}$ such that
+\begin{equation}
+  \p\pa{\theta\pa{\p_X} \in c_n} \approx 1-\alpha
+\end{equation}
+for $n$ large enough. It is typical to rely on a root
+\begin{equation}
+  R_n = R_n \pa{X_1,\ldots, X_n,\theta\pa{\p_X}}.
+\end{equation}
+Let $J_n \pa{x,\p} = \p\pa{R_n \leq x}$. If it were known, we can choose $c$ such that $\p\pa{R_n\leq c}\approx 1-\alpha$. Given such a $c$, the set $c_n = \set{\theta\in \Theta: R_n \leq c}$ is a confidence set.  We can also find $c_1,c_2$ such that $\p\pa{c_1\leq R_n \leq c_2}\approx 1-\alpha$.  Then, $c_n = \set{\theta\in \Theta: c_1 \leq R_n \leq c_2}$ is also a confidence set.
+
+\subsubsection{Pivots and asymptotic pivots}
+If $\theta\pa{\p_X}$ is the mean of $\p_X$ and $\calp = \set{\caln \pa{\theta,1}:\theta\in \R}$, then
+\begin{equation}
+  R_n = \sqrt{n} \pa{\bar{X}_n -\theta\pa{\p_x}}\sim \caln\pa{0,1},
+\end{equation}
+where $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$ is called a \textbf{pivot}. Note that the distribution does not depend on $\p_X$ or $n$. In this case, we may construct confidence sets $c_n$ with finite sample validity, i.e.
+\begin{equation}
+\p\pa{\theta\pa{\p_X}\in c_n}= 1-\alpha
+\end{equation}
+for all $n$ and for all $\p_X\in \calp$. This is the property of a pivot.
+
+Sometimes, the root may not be pivotal, but it may be asymptotically pivotal, i.e.~the distribution function $J_n\pa{x,\p_X}$ converges for all $x$ to $J\pa{x,P}$ that does not depend on $\p_X\in \calp$.
+\begin{example}
+  $\theta\pa{\p_X}$ is the mean of $\p_X$ and $\calp = \set{\text{set of distributions on }\R\text{ with a finite, nonzero variance}}$, then
+  \begin{equation}
+    R_n = \frac{\sqrt{n}\pa{\bar{X}_n - \theta\pa{\p_X}}}{\hat{\sigma}_n}
+  \end{equation}
+  is asymptotically pivotal. Indeed, it converges in distribution to $\caln\pa{0,1}$. In this case,
+  \begin{equation}
+    \lim_{n\rightarrow \infty} \p\pa{\theta\pa{\p_X}\in c_n} = 1-\alpha
+  \end{equation}
+  for all $\p_X\in \calp$.
+\end{example}
+
+\subsubsection{Asymptotical approximation}
+When the root is neither a pivot nor an asymptotic pivot, the distribution $J_n\pa{x,\p}$ will depend on $\p$ and if its limit distribution exists, the limit distribution will also depend on $\p$. For example,
+\begin{equation}
+  \sqrt{n} \pa{\bar{X}_n - \theta\pa{\p_X}}.
+\end{equation}
+Then for all $x$,
+\begin{equation}
+  J_n \pa{x,\p_X} \underset{n\rightarrow \infty}{\rightarrow} \Phi\pa{\frac{x}{\sigma \pa{\p_X}}},
+\end{equation}
+where $\Phi$ is the cumulative distribution function of $\caln\pa{0,1}$. In this case, we approximate the limit using $\Phi\pa{\frac{x}{\hat{\sigma}_n}}$, e.g.~$\hat{\sigma}_n^2 = \frac{1}{n-1}\sum_{i=1}^n \pa{X_i - \bar{X}_n}^2$.
+
+\subsubsection{The Bootstrap}
+Another approach to approximate $J_n \pa{x,\p_X}$, where one replaces $J_n\pa{x,\p_X}$ by $J_n\pa{x,\hat{\p}_x}$, where
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+  \item $\hat{\p}_X = \frac{1}{n}\sum_{i=1}^n \delta_{X_i}$, where $\delta_{X_i}$ is the Dirac measure, i.e.~$\delta_x\pa{B}= \begin{cases} 1 ,&\text{ if } x\in B\\ 0,&\text{ else}\end{cases}$. $\delta_{X_i}$ is a random measure, $\omega\in \Omega \mapsto \delta_{X_i\pa{\omega}}$. We have by definition that $\pa{X_n}$ converges in distribution to a random variable with cdf $F$ if for all $x$, $\p\pa{X_n\leq x}\rightarrow F\pa{x}$ as $n\rightarrow \infty$.
+
+  This $\hat{\p}_X$ is called the \textbf{empirical distribution} and gives rise to the nonparametric bootstrap.
+
+    $J_n\pa{x,\p_X} = \p\pa{R_n \pa{X_1,\ldots, X_n,\p_X}\leq x}$, e.g.~$R_n\pa{X_1,\ldots, X_n,\p_X}= \sqrt{n} \pa{\bar{X}_n - \theta\pa{\p_X}}$.
+
+    $J_n \pa{x,\hat{\p_X}} = \p\pa{R_n \pa{X_1^\ast,\ldots, X_n^\ast,\hat{\p}_X}\leq x}$, where $\pa{X_j^\ast}_{j=1}^n$ are $n$ iid draws from $\hat{p}_X$.
+
+    Note that $\theta\pa{\hat{\p}_X} = \bar{X}_n$ if we are looking for the mean.
+  \item Parametric Bootstrap: $\p_X\in \calp$, where $\calp$ is a parametrized family $\set{\p_X\pa{\theta} : \theta \in \Theta}$ instead of $\hat{\p}_X$, we use $\p_X\pa{\hat{\theta}}$ and we approximate $\sigma_n\pa{x,\hat{\p}_X}$ by $J_n \pa{x,\p_X\pa{\hat{\theta}}}$.
+\end{enumerate}
+\begin{itemize}
+\item Take $B$ bootstrap samples $X_{1,b}^\ast, \ldots, X_{n,b}^\ast$ which are drawn iid from $\hat{\p}_X$ for $b=1,\ldots, B$.
+\item Form $R_{n,b}^\ast = \sqrt{n}\pa{\bar{X^\ast}_{b,n}-\bar{X}_n}$ for $b=1,\ldots, B$.
+\item Approximate $J_n \pa{x,\p_X}$ by $\frac{1}{B}\sum_{b=1}^B \one_{\set{R^\ast_{n,b} \leq x}} = J_{n,B}\pa{x,\hat{\p}_X}$. $B$ can be taken as large as we can.
+\item We then usually compute a quantile of $J_{n,B}\pa{x,\hat{p}_X}$. A $1-\alpha$-quantile is
+\begin{equation}
+  \inf\set{x\in \R: J_{n,B} \pa{x,\p_X}\geq 1-\alpha}.
+\end{equation}
+We have
+\begin{equation}
+  \lim_{B\rightarrow \infty} J_{n,B}\pa{x,\hat{\p}_X} = J_n\pa{x,\hat{\p}_X}.
+\end{equation}
+From $1-\alpha$-quantiles, we can obtain confidence sets.
+\end{itemize}
+
+\begin{example}[Parametric Bootstrap Example]
+Take $ \calp = \set{\caln \pa{\theta,1}, \theta\in \R}$. $\hat{\p}_X$ is now replaced by $\caln \pa{\hat{\theta},1} = \caln \pa{\bar{X}_n, 1}$.
+\end{example}
+
+\begin{theorem}\label{thm:bootstrap}
+  Let $\theta\pa{\p_X}$ be the mean of $\p_X$ and $\calp = \set{\text{distributions over }\R \text{ with finite nonzero variance}}$. Consider the root $R_n = \sqrt{n}\pa{\bar{X}_n- \theta\pa{\p_X}}$. Then:
+  \renewcommand{\labelenumi}{\roman{enumi})}
+  \begin{enumerate}
+    \item $J_n\pa{x,\hat{\p}_X}$ converges to $J\pa{x,\p_X} = \Phi \pa{\frac{x}{\sigma\pa{\p_X}}}$ for all $x$ such that $J\pa{x,\p_X}$ is continuous, a.s.~as $n\rightarrow \infty$.
+    \item $J_n^{-1}\pa{1-\alpha,\hat{\p}_X}$ (notation for quantile) converges to $J^{-1}\pa{1-\alpha,\p_X} = \sigma\pa{\p_X}J^{-1}\pa{1-\alpha, \caln\pa{0,1}}$
+  \end{enumerate}
+\end{theorem}

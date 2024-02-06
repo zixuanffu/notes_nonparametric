@@ -1,0 +1,70 @@
+\section{Sobolev class and symmetric kernel}
+\subsection{Review of Fourier transform}
+\begin{definition}
+	The characteristic function of a random variable $X$ is
+	\begin{equation*}
+		\varphi_X\pa{w} = \E\bra{e^{iwX}} = \int_\R e^{iwx} f_X\pa{x}dx.
+	\end{equation*}
+\end{definition}
+
+\begin{remark}\label{rem:fourier_l2}
+	It is possible as well to define the Fourier transform of $f\in L^2\pa{\R}$. Therefore, we take a sequence $f_m \in L^1\pa{\R}\cap L^2\pa{\R}$ such that $\norm{f-f_m}^2_2\rightarrow 0$ as $m\rightarrow \infty$ and define the Fourier transform of $f$ as the $L^2$-limit of $\F \bra{f_m}$. More precisely, we may take $f_m\pa{x} = f\pa{x} \one_{\abs{x}\leq m}$. It is in $L^2$ as the product of an $L^2\pa{\R}$ function and a bounded function, and it is in $L^1\pa{\R}$ as a result of the Cauchy-Schwarz inequality:
+	\begin{equation*}
+		\int_{\R} f\pa{x} \one_{\abs{x}\leq m} dx \leq \sqrt{\int_{\R} f\pa{x}^2 dx } \sqrt{\int_{-m}^m 1 dx } = \sqrt{2m}  \sqrt{\underbrace{\int_{\R} f\pa{x}^2 dx}_{<\infty} }.
+	\end{equation*}
+	Moreover,
+	\begin{equation}\label{eq:cauchy}
+		\norm{f_m -f}^2_2 = \int_{-\infty}^m \abs{f\pa{x}}^2 dx + \int_m^\infty \abs{f\pa{x}}^2 dx \rightarrow 0
+	\end{equation}
+	as $m\rightarrow \infty$.
+% \begin{exercise}
+% 	If $f$ is symmetric, $\F \bra{f}$ is real-valued.
+% \end{exercise}
+By equation \ref{eq:cauchy}, for all $m,m', \norm{f_m -f_{m'}}_2^2\rightarrow 0$ as $m,m'\rightarrow \infty$, i.e.~$\pa{f_m}$ is a Cauchy sequence. By Plancherel's theorem \ref{prop:plancherel_inverse},
+\begin{equation*}
+    \norm{\F \bra{f_m} -\F\bra{f_{m'}} }_2^2 = \norm{\F \bra{f_m -f_{m'} }}_2^2 = 2\pi \norm{f_m -f_{m'}}_2^2.
+\end{equation*}
+Thus, $\F\bra{f_m}$ is a Cauchy sequence in $L^2\pa{\R}$, so that it admits a limit in $L^2\pa{\R}$, since $L^2\pa{\R}$ is a complete normed space. We can then define the Fourier transform of $f$ to be this limit.
+\end{remark}
+% \begin{exercise}
+% 	Prove
+% 	\begin{enumerate}
+% 		\item $\F\bra{f\pa{\cdot}} \pa{w} = a \F \bra{f\pa{\cdot}}\pa{w}$,
+% 		\item $\F\bra{\frac{1}{h}f\pa{\frac{\pa{\cdot}}{h}}}\pa{w} = \F\bra{f\pa{\cdot}}\pa{hw}$,
+% 		\item $\F\bra{f\pa{t-\cdot}}\pa{w} = e^{iwt} \F\bra{f\pa{\cdot}} \pa{-w}$.
+% 	\end{enumerate}
+% \end{exercise}
+% \begin{exercise}
+% 	If $\hat{f}_X$ is a kernel density estimator, where the kernel is symmetric, then
+% 	\begin{enumerate}
+% 		\item $\F\bra{K}$ is symmetric and real,
+% 		\item $\F\bra{\hat{f}_X}\pa{w} = \phi_u \pa{w} \F\bra{K} \pa{hw}$,
+% 	\end{enumerate}
+% 	where $\phi_u \pa{w} = \frac{1}{n}\sum_{j=1}^n e^{iwX_j}$.
+% \end{exercise}
+% \begin{exercise}
+% 	By 2 of \ref{prop:plancherel_inverse}, check that the Fourier transform of the sinc kernel is $\one_{\abs{w}\leq 1}$.
+% \end{exercise}
+
+% Let $f\in L^1\pa{\R}$ such that $\F\bra{f}\in L^1\pa{\R}\cap L^2\pa{\R}$. Then
+% \begin{equation*}
+% 	f\pa{x} = \frac{1}{2\pi} \int_{\R} e^{-iwx}\F\bra{f}\pa{w} d w.
+% \end{equation*}
+
+% We can define, after differentiating in the usual way without knowing whether the right-hand side is differentiable,
+% \begin{equation*}
+% 	f'\pa{x} \defeq \frac{i}{2\pi} \int_{\R} \pa{-iw} e^{-iwx} \F\bra{f}\pa{w}dw,
+% \end{equation*}
+% and
+% \begin{equation*}
+% 	f''\pa{x} \defeq \frac{1}{2\pi} \int_\R \pa{w^2} e^{-iwx} \F\bra{f} \pa{w}dw,
+% \end{equation*}
+% and so on. 
+\subsection{Sobolev class}
+Building on this, we make the following definition.
+\begin{definition}
+	Let $\beta>0$, $L>0$, the Sobolev class $\calp_S\pa{\beta,L}$ is defined as
+	\begin{equation*}
+		\calp_S\pa{\beta,L} = \set{f: f \text{ is a density on }  \R \text{ and } \int_{\R}\abs{w}^{2\beta} \abs{\F\bra{f}\pa{w}}^2 dw \leq 2\pi L^2}.
+	\end{equation*}
+\end{definition}

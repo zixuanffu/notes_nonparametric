@@ -1,0 +1,72 @@
+\section{Completeness condition}
+
+We want to understand the completeness condition when $X=Z-\eta$, where $Z \indep \eta$ and both have densities. 
+Recall the definition of \textbf{completeness}.
+\begin{definition}[Completeness]
+\label{completeness}
+Completeness is defined as such that $$
+\forall z \in \R,\ \int_\R \varphi(x)f_\eta(z-x)dx=0 \text{ implies that for all } x,\ \varphi(x)=0,$$
+where $\varphi$ is continuous and $\int_\R  \abs{{\varphi(x)}}dx <\infty$.
+\end{definition}
+Now, We make a detour to introduce some notations in function space.
+\begin{definition}
+    Let $f$ be a function defined on $\Rd$ with values in $\R$ or $\C$ and $p\le 1$. Then $L^p(\Rd)$ is defined as the space of measurable function from $\left(\Rd,\mathcal{B}(\Rd)\right)$ such that $\int_{\Rd}\abs{f(x)}^p dx<\infty$. If $f$ takes value from $\C$, $\abs{\cdot}$ is the modulus. 
+\end{definition}
+
+\begin{definition} [$L^1\pa{\R}$ space]
+        A function is in $L^1\pa{\R}$ if $\int_{\R} \abs{f\pa{x}}dx <\infty$.
+\end{definition}
+\begin{definition}[Fourier transform]
+	If $f\in L^1\pa{\R}$, the Fourier transform of $f$ is defined for all $w\in \R$ by
+	\begin{equation*}
+		\F\bra{f}\pa{w} = \int_\R e^{iwx} f\pa{x}dx.
+	\end{equation*}
+\end{definition}
+\begin{remark}
+    Let $t\in \R$, $e^{it}=\cos(t)+i\sin(t)$ and $\abs{e^{it}}^2=1$
+\end{remark}
+\begin{definition}[Convolution]
+    If $f$ and $g$ belong to $L^1(\Rd)$, the convolution of $f$ and $g$ is $f\ast g(z)=\int f(x)g(z-x)dx$.
+\end{definition}
+\begin{proposition}
+    If $f$ and $g$ belong to $L^1(\Rd)$, then $f\ast g \in L^1(\Rd)$. Its Fourier transformation is $F\bra{f\ast g}(w)=F\bra{f}(w)=F\bra{f}(w)F\bra{g}(w)$ for all $w\in \Rd$
+\end{proposition}
+\begin{remark}
+    check this proposition as an exercise.
+\end{remark}
+\begin{proposition}
+    If $f\in L^1(\Rd)$, then $F[f]$ is continuous and $\lim_{\norm{w}_2 \to \infty} F[f](w)=0$.
+\end{proposition}
+We introduce two properties that are useful for later cause.
+\begin{property}\label{prop:plancherel_inverse}
+        If $f,\F\bra{f}\in L^2\pa{\R}\cap L^1\pa{\R}$, then
+        \begin{enumerate}
+            \item (The Placherel equality)$\frac{1}{2\pi} \norm{\F\bra{f}}^2_2 = \norm{f}^2_2$ (Plancherel's theorem)
+            \item (The Fourier inverse formula) For all $x\in \R$, $f\pa{x} = \frac{1}{2\pi} \int_\R e^{-iwx} \F\bra{f}\pa{w}dw$, the inversion of the Fourier transform.
+        \end{enumerate}
+\end{property}
+
+\begin{question}
+    Let $Z\in L^2\pspace$, then $\E [\abs{z}]\le\sqrt{\E [z^2]}\sqrt{\E [1^2]}$. Therefore, $L^2\pspace\subset L^1\pspace$.
+\end{question}
+
+\begin{example}
+\label{ex:1}
+    Let $k(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$, then $K\in L^1(\R)\cap L^2(\R)$. Then for all $w\in \R$, $$F[K](w)=e^{-\frac{w^2}{2}}.$$
+\end{example}
+\begin{example}
+\label{ex:2}
+    Let $K(x)=\frac{1}{\sqrt{2}}\mathbbm{1}_{\{ \abs{x}\le 1\}}$, then $K\in L^1(\R)\cap L^2(\R)$. Then for all $w\in \R$,
+    \begin{align*}
+        F[K](w)&=1/2\int_{-1}^1 \cos(wx)dx+1/2\int_{-1}^1 \sin(wx)dx\\
+        &=\frac{1}{2w}[\sin(wx)]\Big\vert_{-1}^1\\
+        &=\frac{\sin(wx)}{w}
+    \end{align*}
+    Here $F[K]\notin L^1(\R)$ but $F\bra{K}\in L^2(\R)$. Note also that $F[K](w)=0$ if and only if $w=\pm k\pi$ for $k\in \mathrm{N}$.
+\end{example}
+
+\paragraph{Completeness} Let us check whether the functions given in Example~\ref{ex:1} and \ref{ex:2} satisfy the completeness condition~\ref{completeness} for $X=Z-\eta$.  
+\begin{enumerate}
+    \item Since $F[f_\eta](w)>0$ for all $w$. Thus, $F[\varphi](w)=0\Leftrightarrow \varphi(x)=0$ for all $x$.
+    \item Similarly,  $F[\varphi](w)=0$ for all $w\in \R\setminus S$. Because $\varphi$ is continuous, it is $0$ everywhere.
+\end{enumerate}
