@@ -1,0 +1,133 @@
+\subsection{Extension}
+\begin{remark}
+    The condition \ref{thm:sym_ker} is satisfied for an integer $\beta$ if $K$ is a kernel of order $\beta-1$ and $\int \abs{u}^\beta \abs{K\pa{u}}<\infty$.
+\end{remark}
+\begin{remark}
+    We can work with a smaller class of \textit{super smooth} density functions.
+    \begin{enumerate}
+        \item $\calp_{\alpha,r}=\set{f\in L^2(\R) \quad \text{such that} \quad \int \exp(\alpha\abs{w}^2)\abs{\phi(w)}^2 dw \le L^2}$ where $\phi=\F\bra{f}$ is the Fourier transform of $f$. We can show taht a MISE optimal kernel density estimatro could have a risk less than $C\frac{(\log n)^{1/r}}{n}$.
+        \item $\calp_{\alpha,r}=\set{f\in L^2(\R) \quad \text{such that} \quad \text{supp}\pa{\phi}\subset\bra{-a,a}}$. In this case, the upper bound is $\frac{a\pi}{n}$.
+    \end{enumerate}
+\end{remark}
+
+\section{Other types of non-parametric estimators}
+\subsection{Orthogonal series estimators}\footnote{Generalizations are called sieves (in Econometrics) or dictionaries in machine-learning.}
+Let $f_X\in L^2\pa{\bra{0,1}^d}$, where $L^2\pa{\bra{0,1}^d}$ can be proven to be a \textit{separable Hilbert space} when endowed with the inner product
+\begin{equation*}
+\angs{f,g}=\int_\R f(x)g(x) dx.
+\end{equation*}
+We write
+\begin{equation*}
+\norm{f}_2^2 = \angs{f,f}.
+\end{equation*}
+{Some properties are comparable to $\R^d$ with $\angs{x,y} = x^T y$.} As a separable space, $L^2\pa{[0,1]^d}$ has a countable basis $\pa{e_j}_{j=1}^\infty$, which is a sequence of functions in $L^2\pa{[0,1]^d}$ such that for all
+\begin{equation*}
+\angs{e_j,e_k} =\delta_{jk} = \begin{cases}
+1, &j=k,\\
+0, &\text{else},
+\end{cases}
+\end{equation*}
+and for all $f\in L^2\pa{\bra{0,1}^d}$,
+\begin{equation*}
+f=\lim_{k\rightarrow\infty} \sum_{j=1}^k \angs{f,e_j} e_j.
+\end{equation*}
+{Think of $\R^d$, where $\pa{e_j}_{j=1}^d$ is a basis for $e_j =\pa{0,\ldots,0,1,0,\ldots,0}$ the $j$-th unit vector. Then $\angs{e_j,e_k} = e_j^T e_k = \delta_{jk}$, and for $x\in \R^d$,
+\begin{equation*}
+  x = \sum_{j=1}^d x_j e_j = \sum_{j=1}^d x^T e_j e_j = \sum_{j=1}^d \angs{x,e_j} e_j.
+\end{equation*}}
+Given $\pa{e_j}_{j=1}^\infty$ a basis, for all $f\in L^2\pa{[0,1]^d}$, \begin{equation*}
+\norm{f}^2_2=\sum_{j=1}^\infty \angs{f,e_j}^2.
+\end{equation*}
+This is a version of the Pythagorean theorem. {In $\mathbb{R}^d$,
+\begin{equation*}
+\norm{x}^2_2 = \sum_{j=1}^d x_j^2 = \sum_{j=1}^d \angs{x,e_j}^2.
+\end{equation*}}
+Back to our goal to estimate $f_X = \lim_{k\rightarrow \infty}\sum_{j=1}^\infty \angs{f,e_j} e_j$. For some $T\in \N$, consider $f_X^T \defeq \sum_{j=1}^T \angs{f,e_j} e_j$. The idea is to estimate this cut-off sum instead of the limit expression for $f_X$. We have
+\begin{equation*}
+c_j \defeq \angs{f_X,e_j}=\int_{[0,1]^d}f_X(x)e_j(x)dx = \E\bra{e_j(X)},
+\end{equation*}
+so that an unbiased estimator is
+\begin{equation*}
+\hat{c}_j = \frac{1}{n}\sum_{i=1}^n e_j\pa{X_i}.
+\end{equation*}
+Thus, a candidate estimator for $f_X$ is
+\begin{equation*}
+  \hat{f}_X^T = \sum_{j=1}^T \hat{c}_j e_j,
+\end{equation*} where
+\begin{equation*}
+\E\bra{\hat{f}_X^T}=\sum_{j=1}^T c_j e_j = f_X^T.
+\end{equation*}
+It is possible to write
+\begin{equation*}
+  \hat{f}_X^T=\frac{1}{n} \sum_{i=1}^n \underbrace{\sum_{j=1}^T e_j(X_i)e_j(x)}_{q_T\pa{X_i,x}},
+\end{equation*}
+where $q_T\pa{X_i,x}$ plays the role of a kernel and $T$ plays the same role as $\frac{1}{h}$.
+On $L^2\pa{[0,1]^d}$ we can use bases for which $e_j=f_{j_1}\cdots f_{j_d}$ where $\pa{f_k}_{k=1}^\infty$ is a basis of $L^2\pa{[0,1]}$ and $\pa{j_1,...,j_d}$ plays the role of the index $j$\footnote{Note that there exists a bijection $\N^d\rightarrow \N$.}.
+For example, $f_{k}\pa{x} = \sqrt{2}\sin\pa{\pi k x}$ is a basis of $L^2\pa{[0,1]}$.
+This gives
+\begin{equation*}
+  e_{j_1,\ldots,j_d} \pa{x} = 2^{\frac{d}{2}} \prod_{k=1}^d \sin\pa{\pi j_k x_k}.
+\end{equation*}
+One can check that this defines an orthogonal system \textbf{(Exercise)}.
+We define
+\begin{equation*}
+\begin{split}
+W\pa{\beta, L} = &\left\{ \vphantom{\sum_{j_d=1}^\infty}f: \bra{0,1}^d\rightarrow \R \text{ with coefficients } c_{{j_1},\ldots,{j_d}}\text{ w.r.t. } \pa{f_{j_1}, \ldots, f_{j_d}} \right.  \\
+&\quad\quad \left. \text{such that } \sum_{j_1=1}^\infty \sum_{j_2=1}^\infty\cdots \sum_{j_d=1}^\infty c_{j_1,...,j_d}^2\pa{j_1^2+...+j_d^2}^\beta\leq L^2 \right\}
+\end{split}
+\end{equation*}
+{In $L^2\pa{\R^d}$, an analogous condition (with Fourier transform instead of Fourier series) would be:
+\begin{equation*}
+\int_{\R^d} \abs{\mathcal F[f]\pa{w_1,...,w_d}}^2\pa{\abs{w_1}^2+...+\abs{w_d}^2}^\beta dw \leq L^2.
+\end{equation*}}
+Note the usual bias-variance decomposition of the mean-squared error,
+\begin{equation*}
+  \E\bra{\norm{\hat f_X^T - f_X}^2_2} = \underbrace{\norm{f_X^T - f_X }^2_2}_{b^2=\text{Bias}^2} + \underbrace{\E\bra{\norm{\hat{f}_X^T - f_X^T}_2^2}}_{\sigma^2}.
+\end{equation*}
+Then
+\begin{equation*}
+\begin{split}
+  b^2 &= \sum_{j_1 = T+1}^\infty \cdots \sum_{j_d = T+1}^\infty c^2_{j_1,\ldots, j_d} \\
+  &\leq \sum_{j_1 = T+1}^\infty \cdots \sum_{j_d = T+1}^\infty c^2_{j_1,\ldots, j_d} \pa{\pa{\frac{j_1}{T+1}}^2 + \cdots + \pa{\frac{j_1}{T+1}}^2}^\beta \\
+  &= \pa{\frac{1}{T+1}}^{2\beta } \sum_{j_1 = T+1}^\infty \cdots \sum_{j_d = T+1}^\infty c^2_{j_1,\ldots, j_d} \pa{j_1^2 + \cdots + j_d^2}^\beta \\
+  &\leq \pa{\frac{1}{T+1}}^{2\beta} L^2.
+\end{split}
+\end{equation*}
+Note that $\norm{f_{j_1}\cdots f_{j_d}}_2^2 = \norm{f_{j_1}}_2^2 \cdots \norm{f_{j_d}}_2^2$, which are all $=1$. Then,
+\begin{equation*}
+\begin{split}
+  \sigma^2 &= \E\bra{ \norm{\hat{f}_X^T - f_X^T}_2^2}\\
+   &= \E\bra{\sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \pa{\hat{c}_{j_1,\ldots,j_d} - c_{j_1,\ldots, j_d}}^2\norm{f_{j_1}\cdots f_{j_d}}^2_2 }\\
+   &= \E\bra{\sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \pa{\hat{c}_{j_1,\ldots,j_d} - c_{j_1,\ldots, j_d}}^2} \\
+  &= \sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \Var\pa{\hat c_{j_1,...,j_d}}   \\
+  &\leq \sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \frac{2^d}{n^2}\\
+  &\leq \frac{\pa{2 \pa{T+1} }^d }{n}
+\end{split}
+\end{equation*}
+since
+\begin{equation*}
+\begin{split}
+  \Var\pa{\hat c_{j_1,...,j_d}} &= \frac{1}{n^2} \sum_{i=1}^n \Var \pa{f_{j_1} \cdots f_{j_d} \pa{X_i}} \\
+  &\leq \frac{1}{n^2} \sum_{i=1}^n \E \bra{f_{j_1}^2 \cdots f_{j_d}^2 \pa{X_i}}\\
+  &\leq \frac{2^d}{n^2},
+  \end{split}
+\end{equation*}
+where we used $f_{j_k}^2 \leq 2$ for our particular basis $f_{j_k}\pa{x} = \sqrt{2}\sin\pa{\pi j_k x}$.
+Remember $\sigma^2 \leq \frac{1}{nh^d}$ for kernel estimators.
+This gives an upper bound of the order of $n^{-\frac{2\beta}{2\beta +d }}$ if $T = \left\lfloor n^{\frac{1}{2\beta + d}}\right\rfloor$.
+\begin{remark}(Nonexaminable content)
+    \begin{itemize}
+        \item We can work with families of functions which may not be basis functions. We talk about series, dictionaries (machine learning).
+        \item In the previous upper bound, the choice of $T$ is infeasible because it depends on $\beta$ which is unknown. 
+        \item It it classical to estimate many coefficients $c_j$, for $T$ much larger than before (\emph{e.g.} $\sqrt{n}$) and work with the estimators\begin{equation*}
+            \hat f_X^T\pa{x} = \sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \hat \tau(c_{j_1,...,j_d}) e_{j_1}\cdots e_{j_d}\pa{x}.
+        \end{equation*}
+        For example 
+        \begin{itemize}
+            \item $\tau_\rho \pa{x} = \one_{\set{\abs{x}\geq \rho}}$, where $\rho$ is a thresholding function. This is the \textbf{hard} thresholding function.
+            \item $\tau_\rho \pa{x} = x \max \pa{1-\frac{\rho}{\abs{x}},0}$. This is the \textbf{soft} thresholding function.
+            \end{itemize}
+    \end{itemize}
+
+     
+\end{remark}
