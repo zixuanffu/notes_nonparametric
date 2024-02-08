@@ -1,18 +1,12 @@
-\section{Density function and kernel estimation}
-\subsection{Density function}
-We want to estimate the density $f_X$ of $X\in \R$ and will work among classes of densities. For example,
-\begin{enumerate}
-    \item \textbf{continuous densities}
-    \item densities such that for all $x,\ x'\in \R,\ \abs{f_X(x)-f_X(x')}\le M\abs{x-x'}$ for some $M>0$
-    \item densities which are \textbf{monotonically increasing} on $[0,1]$
-\end{enumerate}
 
-\subsection{Kernel estimation}
+
+\subsection{Kernels estimators}
 \paragraph{Some kernels} We list out some common kernels.
 \begin{enumerate}
-    \item \label{ker:rect} $K\pa{x}=\frac{1}{2}\1_{\abs{x}\le \frac{1}{2}}$
+    \item \label{ker:rect} $K\pa{x}=\frac{1}{2}\1_{\abs{x}\le \frac{1}{2}}$ the rectangular
   \item\label{ker:gauss} $K\pa{x} = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$, the Gaussian kernel
   \item\label{ker:sinc} $K\pa{x} = \frac{\sin\pa{x}}{\pi x}$, the sinc kernel
+  \item \label{ker:epan} $K\pa{x} = \frac{3}{4}\pa{1-x^2}\1_{\abs{x}\le 1}$, the Epanechnikov kernel
 \end{enumerate}
 \begin{remark}
     Note that the Gaussian kernel is both in $L^1\pa{\R,\calb\pa{\R},dx}$ and in $L^2\pa{\R,\calb\pa{\R},dx}$. The sinc kernel is only in $L^2\pa{\R,\calb\pa{\R},dx}$ but not in $L^1\pa{\R,\calb\pa{\R},dx}$, as the absolute value fails to be integrable. However, we have

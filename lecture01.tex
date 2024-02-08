@@ -1,0 +1,34 @@
+\section{Preliminaries}
+\subsection{Probability basics}
+\begin{definition}[distribution law]
+    The distribution law of a random variable $X$ is $\p_X$ is the probability on $\pa{\Rd,\calb\pa{\Rd}}$ such that  $\p_X\bra{B}=\p\bra{X\in B}$ for all $B\in \calb\pa{\Rd}$
+\end{definition}
+
+\begin{definition}[density]
+    $X$ has density $f_X$ if $\p_X\bra{B}=\int_B \underbrace{f_X(x)dx}_{d\p_X(x)}$ for all $B\in \calb\pa{\Rd}$
+\end{definition}
+
+Let $Y$ be a random variable and $X$ be a random vector in $\Rd$ defined on the same probability space $\pspace$. We want to define and manipulate $\E\bra{Y|X}$.
+
+There are 2 particular cases
+\begin{enumerate}
+    \item $\pa{Y,X^\top}^\top$ has discrete support. Let $x\in \text{spt}(X)$, then $\E\bra{Y|X=x}=\sum y_j \p\pa{Y=y_j\mid X=X}$. This is well defined only when $\p\pa{X=x}>0$ in which case $\p\pa{Y=y_j\mid X=x}=\frac{\p\pa{Y=y_j,X=x}}{\p\pa{X=x}}$ is well defined.
+    \item $\pa{Y,X^\top}^\top$ and $X$ have a density then $\E\bra{Y|X=x}=\int yf_{Y|X=x}(y)dy$ where $f_{Y|X=x}(y)=\frac{f_{Y,X}(y,x)}{f_X(x)}$.
+\end{enumerate}
+\begin{proposition}[conditional expectation]
+    The random variabel $Z \coloneqq \E\bra{Y|X}$ is the unique random variable such that
+    \begin{enumerate}
+        \item $Z\in L^1\pspace$, that is $Z$ is $\sigma(X)$-measurable.
+        \item \label{prop:con_exp_uniqueness}$\E\bra{Z\mathbbm{1}_B}=\E\bra{Y\mathbbm{1}_B}$ for all $B\in \sigma(X)$.
+    \end{enumerate}
+    \emph{unique} means that if $Z'$ is another random variable satisfying the same properties, then $Z=Z'$ a.s.
+\end{proposition}
+\begin{remark}
+    The random variable $Z$ is $\sigma(X)$-measurable iff $Z=\phi(X)$ for some function $\phi:\pa{\Rd,\calb\pa{\Rd}}\to\pa{\R,\calb\pa{\R}}$. The corresponding function $\phi$ for $Z=\underbrace{E\bra{Y|X}}_{\text{conditional expectation}}$ is denoted by $\underbrace{\E\bra{Y|X=x}}_\text{conditional expectation function}$.
+\end{remark}
+\begin{remark}
+    The proposition \ref{prop:con_exp_uniqueness} is equivalent to 
+    \begin{align*}
+        &\E\bra{\pa{Y-Z}\mathbbm{1}_B}=0, \quad \forall B\in \sigma(X) \\ \Leftrightarrow &\E\bra{\pa{Y-Z}\psi(X)}=0, \quad \forall \psi\ \text{bounded and meansurable}.
+    \end{align*}
+\end{remark}

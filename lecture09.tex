@@ -5,7 +5,7 @@
 \begin{remark}
     We can work with a smaller class of \textit{super smooth} density functions.
     \begin{enumerate}
-        \item $\calp_{\alpha,r}=\set{f\in L^2(\R) \quad \text{such that} \quad \int \exp(\alpha\abs{w}^2)\abs{\phi(w)}^2 dw \le L^2}$ where $\phi=\F\bra{f}$ is the Fourier transform of $f$. We can show taht a MISE optimal kernel density estimatro could have a risk less than $C\frac{(\log n)^{1/r}}{n}$.
+        \item $\calp_{\alpha,r}=\set{f\in L^2(\R) \quad \text{such that} \quad \int \exp(\alpha\abs{w}^2)\abs{\phi(w)}^2 dw \le L^2}$ where $\phi=\F\bra{f}$ is the Fourier transform of $f$. We can show that a MISE optimal kernel density estimatro could have a risk less than $C\frac{(\log n)^{1/r}}{n}$.
         \item $\calp_{\alpha,r}=\set{f\in L^2(\R) \quad \text{such that} \quad \text{supp}\pa{\phi}\subset\bra{-a,a}}$. In this case, the upper bound is $\frac{a\pi}{n}$.
     \end{enumerate}
 \end{remark}
@@ -69,13 +69,18 @@ This gives
   e_{j_1,\ldots,j_d} \pa{x} = 2^{\frac{d}{2}} \prod_{k=1}^d \sin\pa{\pi j_k x_k}.
 \end{equation*}
 One can check that this defines an orthogonal system \textbf{(Exercise)}.
-We define
+\\ We define
 \begin{equation*}
 \begin{split}
 W\pa{\beta, L} = &\left\{ \vphantom{\sum_{j_d=1}^\infty}f: \bra{0,1}^d\rightarrow \R \text{ with coefficients } c_{{j_1},\ldots,{j_d}}\text{ w.r.t. } \pa{f_{j_1}, \ldots, f_{j_d}} \right.  \\
 &\quad\quad \left. \text{such that } \sum_{j_1=1}^\infty \sum_{j_2=1}^\infty\cdots \sum_{j_d=1}^\infty c_{j_1,...,j_d}^2\pa{j_1^2+...+j_d^2}^\beta\leq L^2 \right\}
 \end{split}
 \end{equation*}
+
+\begin{remark}
+  The $\norm{j}^{2\beta}$ is present due to the fact that we take derivatives of our basis functions defined above till the order of $\beta$.
+\end{remark}
+
 {In $L^2\pa{\R^d}$, an analogous condition (with Fourier transform instead of Fourier series) would be:
 \begin{equation*}
 \int_{\R^d} \abs{\mathcal F[f]\pa{w_1,...,w_d}}^2\pa{\abs{w_1}^2+...+\abs{w_d}^2}^\beta dw \leq L^2.
@@ -100,7 +105,7 @@ Note that $\norm{f_{j_1}\cdots f_{j_d}}_2^2 = \norm{f_{j_1}}_2^2 \cdots \norm{f_
    &= \E\bra{\sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \pa{\hat{c}_{j_1,\ldots,j_d} - c_{j_1,\ldots, j_d}}^2\norm{f_{j_1}\cdots f_{j_d}}^2_2 }\\
    &= \E\bra{\sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \pa{\hat{c}_{j_1,\ldots,j_d} - c_{j_1,\ldots, j_d}}^2} \\
   &= \sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \Var\pa{\hat c_{j_1,...,j_d}}   \\
-  &\leq \sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \frac{2^d}{n^2}\\
+  &\leq \sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \frac{2^d}{n}\\
   &\leq \frac{\pa{2 \pa{T+1} }^d }{n}
 \end{split}
 \end{equation*}
@@ -109,7 +114,7 @@ since
 \begin{split}
   \Var\pa{\hat c_{j_1,...,j_d}} &= \frac{1}{n^2} \sum_{i=1}^n \Var \pa{f_{j_1} \cdots f_{j_d} \pa{X_i}} \\
   &\leq \frac{1}{n^2} \sum_{i=1}^n \E \bra{f_{j_1}^2 \cdots f_{j_d}^2 \pa{X_i}}\\
-  &\leq \frac{2^d}{n^2},
+  &\leq \frac{2^d}{n},
   \end{split}
 \end{equation*}
 where we used $f_{j_k}^2 \leq 2$ for our particular basis $f_{j_k}\pa{x} = \sqrt{2}\sin\pa{\pi j_k x}$.
@@ -122,7 +127,7 @@ This gives an upper bound of the order of $n^{-\frac{2\beta}{2\beta +d }}$ if $T
         \item It it classical to estimate many coefficients $c_j$, for $T$ much larger than before (\emph{e.g.} $\sqrt{n}$) and work with the estimators\begin{equation*}
             \hat f_X^T\pa{x} = \sum_{j_1=1}^T \cdots \sum_{j_d=1}^T \hat \tau(c_{j_1,...,j_d}) e_{j_1}\cdots e_{j_d}\pa{x}.
         \end{equation*}
-        For example 
+        where $\tau \propto \frac{\sqrt{\log n}}{n}$. For example 
         \begin{itemize}
             \item $\tau_\rho \pa{x} = \one_{\set{\abs{x}\geq \rho}}$, where $\rho$ is a thresholding function. This is the \textbf{hard} thresholding function.
             \item $\tau_\rho \pa{x} = x \max \pa{1-\frac{\rho}{\abs{x}},0}$. This is the \textbf{soft} thresholding function.

@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}Preliminaries}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Probability basics}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Completeness condition}{4}{subsection.1.2}%
+\contentsline {paragraph}{Completeness}{5}{section*.3}%
+\contentsline {section}{\numberline {2}Density function and kernel estimation}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Density function}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Density function estimation}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Kernels estimators}{6}{subsection.2.3}%
+\contentsline {paragraph}{Some kernels}{6}{section*.4}%
+\contentsline {subsection}{\numberline {2.4}Performance analysis}{7}{subsection.2.4}%
+\contentsline {paragraph}{Result}{11}{section*.5}%
+\contentsline {section}{\numberline {3}Sobolev class and symmetric kernel}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Review of Fourier transform}{12}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Sobolev class}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Symmetric kernel}{12}{subsection.3.3}%
+\contentsline {paragraph}{Optimal rate of convergence}{13}{section*.6}%
+\contentsline {paragraph}{Kernel comparison}{14}{section*.7}%
+\contentsline {section}{\numberline {4}MISE and Cross validation}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}MISE}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Cross validation}{15}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Extension}{16}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Other types of non-parametric estimators}{16}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Orthogonal series estimators}{16}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Regression Function Estimation}{20}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Introduction: average effect of $X$ on $Y$}{20}{subsection.6.1}%
+\contentsline {paragraph}{Nadaraya-Watson estimator}{20}{section*.9}%
