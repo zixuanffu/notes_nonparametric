@@ -32,3 +32,20 @@ There are 2 particular cases
         &\E\bra{\pa{Y-Z}\mathbbm{1}_B}=0, \quad \forall B\in \sigma(X) \\ \Leftrightarrow &\E\bra{\pa{Y-Z}\psi(X)}=0, \quad \forall \psi\ \text{bounded and meansurable}.
     \end{align*}
 \end{remark}
+
+\begin{exercise}
+    Let $X$ and $\beta$ be random vectors in $\Rd$ such that $X$ and $\beta$ ARE independent, that is $\p_{X,\beta}=\p_X \times \p_\beta$. Let $g:\Rd\to\R$ be a bounded and measurable function. Define $Y=g(X^\top\beta)$. It can be shown that $\E\bra{Y|X=x}=\E\bra{g(x^\top\beta)}$ for all $x\in \text{supp}(X)$.
+\end{exercise}
+\begin{proof}
+    Let $B\in \sigma(X)$. Then $$\E\bra{Y\1\{X\in B\}}=\E\bra{g(X^\top\beta)\1\{X\in B\}}=\int\int g(X^\top b)\1{x\in B}d\p_{\beta,X}(b,x).$$ 
+    Since $X$ and $\beta$ are independent, we have $$\p_{\beta,X}(b,x)=\p_X(x)\p_\beta(b).$$
+    Therefore, \begin{equation*}
+        \begin{split}
+            \E\bra{Y\1\{X\in B\}}&=\int\int g(x^\top b)\1\{x\in B\}d\p_{\beta}(b)d\p_X(x) \\&=\int \E\bra{g(x^\top \beta)}\1\{x\in B\}d\p_X(x)\\
+            &=\E\bra{\E\bra{g(x^\top \beta)}\1\{X\in B\}}\\
+            &=\E\bra{\phi(X)\1\{X\in B\}}
+        \end{split}
+    \end{equation*}
+    where $ \E\bra{g(x^\top \beta)}\equiv \phi(x)$ takes expectation over $\beta$ and is a function of $x$.
+    By the uniqueness of conditional expectation, we have $\E\bra{Y|X}=\E\bra{\phi(X)}$.
+\end{proof}

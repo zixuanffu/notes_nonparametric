@@ -222,6 +222,16 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/bbm/bbm12.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/bbm/bbm8.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/bbm/bbm6.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssi12.tfm
+INPUT ./lecture02.tex
+INPUT ./lecture02.tex
+INPUT ./lecture02.tex
+INPUT ./lecture02.tex
+INPUT lecture02.tex
+INPUT ./lecture03.tex
+INPUT ./lecture03.tex
+INPUT ./lecture03.tex
+INPUT ./lecture03.tex
+INPUT lecture03.tex
 INPUT ./lecture04.tex
 INPUT ./lecture04.tex
 INPUT ./lecture04.tex

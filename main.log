@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.6)  21 FEB 2024 22:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.6)  21 FEB 2024 23:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -372,7 +372,7 @@ LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 2
  (c:/texlive/2023/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-<figures/ihaveaquestion.jpg, id=132, 240.9pt x 240.9pt>
+<figures/ihaveaquestion.jpg, id=136, 240.9pt x 240.9pt>
 File: figures/ihaveaquestion.jpg Graphic file (type jpg)
 <use figures/ihaveaquestion.jpg>
 Package pdftex.def Info: figures/ihaveaquestion.jpg  used on input line 23.
@@ -396,12 +396,12 @@ File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 )
 LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <12> not available
 (Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 24.
-) (./lecture04.tex [3] [4]) (./lecture05.tex [5]) (./lecture06.tex [6]
+ [3]) (./lecture02.tex) (./lecture03.tex) (./lecture04.tex [4]) (./lecture05.tex [5]) (./lecture06.tex [6]
 Overfull \hbox (6.2553pt too wide) detected at line 61
 []
  []
 
-[7] [8] [9] [10]) (./lecture07.tex [11]) (./lecture08.tex [12] [13] [14]) (./lecture09.tex [15] [16] [17] [18] [19]) (./lecture10.tex
+[7] [8] [9] [10] [11]) (./lecture07.tex [12]) (./lecture08.tex [13] [14] [15]) (./lecture09.tex [16] [17] [18] [19]) (./lecture10.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2.
@@ -419,46 +419,51 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2.
 
 [20]
-<figures/kernels.png, id=357, 526.96875pt x 325.215pt>
+<figures/kernels.png, id=361, 526.96875pt x 325.215pt>
 File: figures/kernels.png Graphic file (type png)
 <use figures/kernels.png>
 Package pdftex.def Info: figures/kernels.png  used on input line 23.
 (pdftex.def)             Requested size: 375.80544pt x 231.93643pt.
-) (./lecture11.tex [21 <./figures/kernels.png (PNG copy)>]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (./lecture11.tex [21]
 Overfull \hbox (65.92125pt too wide) in paragraph at lines 16--17
 []\OT1/cmss/m/n/12 Conditional av-er-age treat-ment ef-fect on the treated (CATT): $\OML/cmm/m/it/12 ^^\[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ) = \U/msb/m/n/12 E []$ 
  []
 
+[22 <./figures/kernels.png (PNG copy)>]
 LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <8> not available
 (Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 42.
 LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <6> not available
 (Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 42.
-[22]) (./lecture12.tex [23] [24] [25] [26]
+) (./lecture12.tex [23] [24] [25] [26]
 Overfull \hbox (19.4148pt too wide) in paragraph at lines 151--153
 \OT1/cmss/m/n/12 It can be shown that if there is no de-fiers, then $\U/msb/m/n/12 E [] \OMS/cmsy/m/n/12 ^^@ \U/msb/m/n/12 E [] \OT1/cmr/m/n/12 = \U/msb/m/n/12 P []$\OT1/cmss/m/n/12 . 
  []
 
-) [27] (./main.aux)
+) [27] [28] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 94254449725783D93495F0311FC52E5C;5534.
+(rerunfilecheck)             Checksum: CF16856585D1DCE99B0E5972441A2EFE;5672.
  ) 
 Here is how much of TeX's memory you used:
- 11989 strings out of 474222
- 190665 string characters out of 5750210
- 1944978 words of memory out of 5000000
- 33888 multiletter control sequences out of 15000+600000
+ 12011 strings out of 474222
+ 191071 string characters out of 5750210
+ 1947978 words of memory out of 5000000
+ 33901 multiletter control sequences out of 15000+600000
  572881 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,26n,79p,640b,659s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,26n,79p,640b,683s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/nuc/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb>
-Output written on main.pdf (27 pages, 383407 bytes).
+Output written on main.pdf (28 pages, 386711 bytes).
 PDF statistics:
- 551 PDF objects out of 1000 (max. 8388607)
- 472 compressed objects within 5 object streams
- 157 named destinations out of 1000 (max. 500000)
- 267 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 561 PDF objects out of 1000 (max. 8388607)
+ 481 compressed objects within 5 object streams
+ 160 named destinations out of 1000 (max. 500000)
+ 275 words of extra memory for PDF output out of 10000 (max. 10000000)
 

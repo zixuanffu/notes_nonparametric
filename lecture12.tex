@@ -99,7 +99,7 @@ We need to impose that the assignment $Z$ is independent of the potential outcom
 \end{definition}
 
 
-\subsection{One-sided compliance}
+\subsubsection{One-sided compliance}
 Instead of discussing ATE, we define a new set of parameters called \emph{Intention to treat} (ITT).
 \begin{definition}[Intention to treat (ITT)]
     The intention to treat on treatment is defined as \begin{equation*}
@@ -150,6 +150,11 @@ Under these conditions, we also have \begin{equation*}
     \tau_{\text{LATE}} = \frac{\E\bra{Y \mid Z=1}-\E\bra{Y\mid Z=0}}{\E\bra{D\mid Z=1}-\E\bra{D\mid Z=0}}
 \end{equation*}
 It can be shown that if there is no defiers, then $\E\bra{D\mid Z=1}-\E\bra{D\mid Z=0} = \p\pa{D(1)-D(0)=1}$.
+
+\paragraph{Estimation}
+We can estimate $\tau_{\text{LATE}}$ by \begin{equation*}
+    \frac{\E\bra{Y \mid Z=1}-\E\bra{Y\mid Z=0}}{\E\bra{D\mid Z=1}-\E\bra{D\mid Z=0}}=\frac{Cov(Y,Z)}{Cov(D,Z)}
+\end{equation*}
 
 \subsection{Estimation methods: (Augmented) Inverse probability Weighting (AIPW)}
     
