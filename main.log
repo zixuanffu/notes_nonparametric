@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.6)  8 FEB 2024 23:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.6)  21 FEB 2024 22:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -302,14 +302,15 @@ Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 \xmathstrut@dim=\dimen173
 ) (./newcommand.tex
 \c@theorem=\count293
-\c@definition=\count294
-\c@proposition=\count295
-\c@property=\count296
-\c@example=\count297
-\c@question=\count298
+\c@assumption=\count294
+\c@definition=\count295
+\c@proposition=\count296
+\c@property=\count297
+\c@example=\count298
+\c@question=\count299
 ) (c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count299
+\l__color_backend_stack_int=\count300
 \l__pdf_internal_box=\box54
 ) (./main.aux)
 \openout1 = `main.aux'.
@@ -334,16 +335,16 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
  (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count300
+\scratchcounter=\count301
 \scratchdimen=\dimen174
 \scratchbox=\box55
-\nofMPsegments=\count301
-\nofMParguments=\count302
+\nofMPsegments=\count302
+\nofMParguments=\count303
 \everyMPshowfont=\toks31
-\MPscratchCnt=\count303
+\MPscratchCnt=\count304
 \MPscratchDim=\dimen175
-\MPnumerator=\count304
-\makeMPintoPDFobject=\count305
+\MPnumerator=\count305
+\makeMPintoPDFobject=\count306
 \everyMPtoPDFconversion=\toks32
 ) (c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -371,7 +372,7 @@ LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 2
  (c:/texlive/2023/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-<figures/ihaveaquestion.jpg, id=84, 240.9pt x 240.9pt>
+<figures/ihaveaquestion.jpg, id=132, 240.9pt x 240.9pt>
 File: figures/ihaveaquestion.jpg Graphic file (type jpg)
 <use figures/ihaveaquestion.jpg>
 Package pdftex.def Info: figures/ihaveaquestion.jpg  used on input line 23.
@@ -418,32 +419,46 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2.
 
 [20]
-<figures/kernels.png, id=297, 526.96875pt x 325.215pt>
+<figures/kernels.png, id=357, 526.96875pt x 325.215pt>
 File: figures/kernels.png Graphic file (type png)
 <use figures/kernels.png>
 Package pdftex.def Info: figures/kernels.png  used on input line 23.
 (pdftex.def)             Requested size: 375.80544pt x 231.93643pt.
-) [21 <./figures/kernels.png (PNG copy)>] (./main.aux)
+) (./lecture11.tex [21 <./figures/kernels.png (PNG copy)>]
+Overfull \hbox (65.92125pt too wide) in paragraph at lines 16--17
+[]\OT1/cmss/m/n/12 Conditional av-er-age treat-ment ef-fect on the treated (CATT): $\OML/cmm/m/it/12 ^^\[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ) = \U/msb/m/n/12 E []$ 
+ []
+
+LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <8> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 42.
+LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <6> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 42.
+[22]) (./lecture12.tex [23] [24] [25] [26]
+Overfull \hbox (19.4148pt too wide) in paragraph at lines 151--153
+\OT1/cmss/m/n/12 It can be shown that if there is no de-fiers, then $\U/msb/m/n/12 E [] \OMS/cmsy/m/n/12 ^^@ \U/msb/m/n/12 E [] \OT1/cmr/m/n/12 = \U/msb/m/n/12 P []$\OT1/cmss/m/n/12 . 
+ []
+
+) [27] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8AC7D734C52B551FFBAB0A77C3138291;3441.
+(rerunfilecheck)             Checksum: 94254449725783D93495F0311FC52E5C;5534.
  ) 
 Here is how much of TeX's memory you used:
- 11897 strings out of 474222
- 189329 string characters out of 5750210
+ 11989 strings out of 474222
+ 190665 string characters out of 5750210
  1944978 words of memory out of 5000000
- 33851 multiletter control sequences out of 15000+600000
- 572179 words of font info for 92 fonts, out of 8000000 for 9000
+ 33888 multiletter control sequences out of 15000+600000
+ 572881 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,26n,79p,640b,659s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/nuc/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb>
-Output written on main.pdf (21 pages, 361538 bytes).
+Output written on main.pdf (27 pages, 383407 bytes).
 PDF statistics:
- 424 PDF objects out of 1000 (max. 8388607)
- 352 compressed objects within 4 object streams
- 109 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 551 PDF objects out of 1000 (max. 8388607)
+ 472 compressed objects within 5 object streams
+ 157 named destinations out of 1000 (max. 500000)
+ 267 words of extra memory for PDF output out of 10000 (max. 10000000)
 

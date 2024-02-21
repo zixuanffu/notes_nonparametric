@@ -1,0 +1,155 @@
+\subsection{Regression discontinuity design}
+\subsubsection{Sharp RDD}
+\paragraph{Preliminaries}
+Previously, we consider $D$ as a binary variable and impose certain conditions on whether $D_i=1$ or $D_i=0$ (for each individual). Now we specify how $D$ is determined by a continuous variable $X$, that is  $$D_i=\1\set{X_i\ge c}$$
+where $c$ is a known threshold. The idea is that the treatment is assigned based on the value of $X$. We can think of $X$ as a score, and $D$ is assigned to those who score above a certain threshold.
+
+For example, in the context of education, $X$ can be the score of a student in a standardized test, and $D$ is whether the student is admitted to a college. The threshold $c$ is the cutoff score for admission.
+
+\paragraph{Conditions}
+Recall the definition of \emph{unconfoundedness}:
+\begin{definition}[unconfoundedness]
+    The treatment $D$ is unconfounded with the potential outcome $Y$ given $X$ if 
+    \begin{equation*}
+        Y\pa{1},Y\pa{0}\indep D\mid X
+    \end{equation*}
+\end{definition}
+
+It is easy to see that since $D$ is determined by $X$, the potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ given $X$. (Given $X$, $D$ is already determined, thus a constant.) Therefore, the unconfoundedness assumption is satisfied.
+
+
+Since $X$ is a continuous variable, we make an assumption on the \textbf{average potential outcome} $\E\bra{Y(j)\mid X=x}$ for $j=0,1$. We assume that the average potential outcome is continuous at the threshold $c$. For example, for those who have a test score slightly above and below the threshold, the average potential earning $Y(1),Y(0)$ is similar.
+\begin{remark}
+    We assume that $\E\bra{Y(j)\mid X=x}$ is continuous at the threshold $c$ but not $\E\bra{Y\mid X=x}$ at $c$.
+\end{remark}
+
+Let us now check conditional ATE at the point $c$. Previously, we define the conditional ATE as \begin{equation*}
+    \begin{split}
+        \tau(x) &= \E\bra{Y\pa{1}-Y\pa{0}\mid X=x} \\&= \E\bra{Y\pa{1}\mid X=x}-\E\bra{Y\pa{0}\mid X=x} \\& =\underbrace{\E\bra{Y\mid D=1,X=x}-\E\bra{Y\mid D=0,X=x}}_{\text{by unconfoundedness thus mean independence}} \\
+    \end{split}
+\end{equation*}
+Therefore, \begin{equation}
+    \begin{split}
+        \tau(c) &= \lim_{x\to c^+}\E\bra{Y\mid D=1,X=x}-\lim_{x\to c^-}\E\bra{Y\mid D=0,X=x}\\ &= \lim_{x\to c^+} \E\bra{Y\mid X=x}-\lim_{x\to c^-}\E\bra{Y\mid X=x} 
+    \end{split}
+\end{equation}
+
+\paragraph{Estimation}
+To estimate $\E\bra{Y\mid X=x}$, we can use local polynomial of order 0 (Nadaraya-Watson estimator) or more:
+\begin{align*}
+    \pa{\hat{\alpha}_1,\hat{\beta}_1} = \argmin_{\alpha,\beta}\sum_{i=1,X_i\ge c}^n K\pa{\frac{X_i-x}{h}}\pa{Y_i-\alpha-\beta\pa{X_i-c}}^2 \\
+    \pa{\hat{\alpha}_0,\hat{\beta}_0} = \argmin_{\alpha,\beta}\sum_{i=1,X_i< c}^n K\pa{\frac{X_i-x}{h}}\pa{Y_i-\alpha-\beta\pa{X_i-c}}^2 
+\end{align*}
+Then we estimate $\tau(c)$ by $\hat{\tau}(c) = \hat{\alpha}_1-\hat{\alpha}_0$.
+\subsubsection{Fuzzy RDD}
+\paragraph{Preliminaries}
+First, let's recall the definition of conditional mean independence:
+\begin{definition}[Conditional mean independence]
+    We say $U$ and $V$ are conditionally mean independent given $X$ if \begin{equation*}
+        \E\bra{\phi(U)\psi(V)\mid X} = \E\bra{\phi(U)\mid X}\E\bra{\psi(V)\mid X}
+    \end{equation*}
+\end{definition} Naturally local conditional mean independence in a neighborhood $\caln$ is defined as \begin{equation*}
+    \E\bra{\phi(U)\psi(V)\mid X=x} = \E\bra{\phi(U)\mid X=x}\E\bra{\psi(V)\mid X=x}
+\end{equation*} for almost every $x\in \caln$. 
+\paragraph{Condition}
+Now we are ready to move from \emph{sharp RDD} to \emph{fuzzy RDD}. In the fuzzy RDD, the treatment $D$ is not exactly determined by $X$ but instead satisfies the following condition to create a discontinuity at $c$:
+The propensity score function $\pi(x)$ is continuous on $(c-\epsilon,c)$ and $(c,c+\epsilon)$ for some $\epsilon>0$ and $\lim_{x\to c^+}\pi(x)\neq \lim_{x\to c^-}\pi(x)$.
+We also loosen the mean independence condition to local conditional mean independence in a neighborhood $\caln$ of $c$.
+\begin{remark}
+    The fuzzy RDD is more general than the sharp RDD. 
+\end{remark}
+Since we depart from sharp RDD, the conditional ATE at $c$ is now defined as the following:
+\begin{proposition}\begin{equation*}
+    \tau(c) = \frac{\lim_{x\to c^+}\E\bra{Y\mid D=1,X=x}-\lim_{x\to c^-}\E\bra{Y\mid D=0,X=x}}{\lim_{x\to c^+}\pi(x)-\lim_{x\to c^-}\pi(x)}
+\end{equation*}
+\end{proposition}
+\begin{proof}
+    
+\end{proof}
+\paragraph{Estimation}
+We can make use of local polynomial estimator to estimate the denominator and the numerator separately for $tau(c)$.
+
+
+\subsection{Instrumental variable}
+
+In this section, we are in the case of selection on \emph{unobservables}. We have binary treatment $D$, covariates $X$, and a binary instrument $Z$, such that treatment is assigned based on $Z$ (and maybe $X$). But the assigned treatment may not be taken by the individual (imperfect compliance). We have the following model:
+\begin{equation}
+    \begin{split}
+        Y &= Y(0,0)+Z\pa{Y(1,0)-Y(0,0)}+D\pa{Y(0,1)-Y(0,0)} \\
+        &+ DZ\pa{Y(1,1)-Y(0,1)-Y(1,0)+Y(0,0)}
+    \end{split}
+\end{equation}
+and \begin{equation}
+    D=D(0)+Z\pa{D(1)-D(0)}
+\end{equation}
+\paragraph{Preliminaries}
+We define the following:
+\begin{itemize}
+    \item One-sided compliance: $P\pa{D(0)=0}=0$ which means there is no always taker or defiers. 
+    \item two-sided compliance: $P\pa{D(0)=0}\in (0,1)$ and $P\pa{D(1)=1}\in (0,1)$.
+\end{itemize}
+\paragraph{Condition}
+We need to impose that the assignment $Z$ is independent of the potential outcome $Y(z,d)$ and the treatment $D$ (given $X$). From now on we omitted the conditioning on $X$ for simplicity. This is the \emph{exclusion restriction} assumption. It is similar to $\E\bra{\epsilon\mid X,Z}=0$ assumption in standard linear IV model.
+
+\begin{definition}[Local average treatment effect (LATE)]
+    The local average treatment effect is defined as \begin{equation*}
+        \tau_{\text{LATE}} = \E\bra{Y(Z,1)-Y(Z,0)\mid D(1)-D(0)=1}
+    \end{equation*}
+    which is the average treatment effect for the compliers.
+\end{definition}
+
+
+\subsection{One-sided compliance}
+Instead of discussing ATE, we define a new set of parameters called \emph{Intention to treat} (ITT).
+\begin{definition}[Intention to treat (ITT)]
+    The intention to treat on treatment is defined as \begin{equation*}
+        \text{ITT}_D = \E\bra{D(1)-D(0)\mid Z=1}
+    \end{equation*}
+    The intention to treat on outcome is defined as \begin{equation*}
+        \text{ITT}_Y = \E\bra{Y(1,D(1))\mid Z=1}-\E\bra{Y(0,D(0))\mid Z=0}
+    \end{equation*}
+    The intention to treat on outcome for compilers is defined as \begin{equation*}
+        \text{ITT}_{Y\mid D(1)-D(0)=1} = \E\bra{Y(1,1)-Y(0,1)\mid D(1)-D(0)=1}
+    \end{equation*}
+\end{definition} 
+\paragraph{Condition}
+Under the one-sided compliance, we need to make the following assumption:
+\begin{itemize}
+    \item If $D(1)=0$ (never taker), then $Y(1,0)=Y(0,0)$.
+    \item If $D(1)=1$ (compiler), then $Y(0,d)=Y(1,d)$ for $d=0,1$.
+\end{itemize} 
+Because every individual is either a never taker or a compiler, we have the following:$$Y(z,d)=Y(d)$$ This is sometimes called the an \textit{exclusion restriction} assumption.
+
+Then it can be shown that \begin{equation*}
+    \text{ITT}_Y = \text{ITT}_{Y,CO}\text{ITT}_D
+\end{equation*}
+
+Recall that LATE is the average treatment effect for the compilers. And under the condition mentioned above, 
+\begin{align*}
+    \tau_{\text{LATE}} &= \E\bra{Y(Z,1)-Y(Z,0)\mid D(1)-D(0)=1}\\
+    \text{ITT}_{Y\mid {D(1)-D(0)=1}}&=\E\bra{Y(1,1)-Y(0,0)\mid D(1)-D(0)=1}
+\end{align*}
+That is, \begin{equation*}
+    \tau_{\text{LATE}} = \text{ITT}_{Y\mid {D(1)-D(0)=1}}
+\end{equation*}
+Therefore,
+\begin{equation*}
+\tau_{\text{LATE}} = \frac{\text{ITT}_Y}{\text{ITT}_D} =  \frac{\E\bra{Y \mid Z=1}-\E\bra{Y\mid Z=0}}{\E\bra{D\mid Z=1}-\E\bra{D\mid Z=0}}
+\end{equation*}
+
+\subsubsection{Two-sided compliance}
+\paragraph{Condition} This is a natural assumption. 
+\begin{itemize} 
+    \item For never takers, $Y(0,0)=Y(1,0)$.
+    \item For always takers, $Y(0,1)=Y(1,1)$.
+    \item For compliers (and defiers), $Y(1,d)=Y(0,d)$.
+\end{itemize}
+We also need to impose the \emph{monotonicity} assumption. It states that the instrument $Z$ has a monotonic effect on the treatment $D$. That is, $D(1)\ge D(0)$ a.s. or $D(1)\le D(0)$ a.s.
+
+Under these conditions, we also have \begin{equation*}
+    \tau_{\text{LATE}} = \frac{\E\bra{Y \mid Z=1}-\E\bra{Y\mid Z=0}}{\E\bra{D\mid Z=1}-\E\bra{D\mid Z=0}}
+\end{equation*}
+It can be shown that if there is no defiers, then $\E\bra{D\mid Z=1}-\E\bra{D\mid Z=0} = \p\pa{D(1)-D(0)=1}$.
+
+\subsection{Estimation methods: (Augmented) Inverse probability Weighting (AIPW)}
+    
