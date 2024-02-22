@@ -227,6 +227,7 @@ INPUT ./lecture02.tex
 INPUT ./lecture02.tex
 INPUT ./lecture02.tex
 INPUT lecture02.tex
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcss1200.tfm
 INPUT ./lecture03.tex
 INPUT ./lecture03.tex
 INPUT ./lecture03.tex
@@ -247,7 +248,6 @@ INPUT ./lecture06.tex
 INPUT ./lecture06.tex
 INPUT ./lecture06.tex
 INPUT lecture06.tex
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcss1200.tfm
 INPUT ./lecture07.tex
 INPUT ./lecture07.tex
 INPUT ./lecture07.tex

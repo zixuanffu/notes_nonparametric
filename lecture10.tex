@@ -8,8 +8,8 @@ Also the conditional expectation function $\E\bra{Y|X=x}$ is given by $$\E\bra{Y
 A\ natural idea would be to use $$ \hat{f}_X(x) = \frac{1}{nh^2}\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}K\pa{\frac{Y_i-y}{h}},$$ where $K$ is a kernel. 
 
 As an exercise, we can check that $$\int y \hat{f}_{Y,X}\pa{y,x}dy = \frac{1}{nh}\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}Y_i$$ and $$\int \hat{f}_{Y,X}\pa{y,x}dy = \frac{1}{nh}\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}.$$ 
-
-\paragraph{Nadaraya-Watson estimator} This leads to the $$\hat{f}_X(x) = \frac{\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}Y_i}{\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}}.$$
+\subsection{Nadaraya-Watson estimator}
+This leads to the following estimator called \textbf{Nadaraya-Watson estimator}  $$\hat{f}_X(x) = \frac{\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}Y_i}{\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}}.$$
 In practice, dealing with the denominator can be tricky. We propose two ideas to deal with this issue.
 \begin{enumerate}
     \item We can work with \textbf{nonnegative} kernels because \begin{equation*}
@@ -28,3 +28,4 @@ Then $\hat{f}\pa{b}$ where $\hat{f}$ is the N.W. estimator is biased. But a loca
     In TD, we will see that we can get a fast rate of convergence with nonnegative kernels (unlike in density estimation).
 \end{remark}
 \subsection{Local Polynomial Estimation}
+\textit{tutorial 3}
