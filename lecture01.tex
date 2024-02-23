@@ -8,7 +8,9 @@
     $X$ has density $f_X$ if $\p_X\bra{B}=\int_B \underbrace{f_X(x)dx}_{d\p_X(x)}$ for all $B\in \calb\pa{\Rd}$
 \end{definition}
 
-Let $Y$ be a random variable and $X$ be a random vector in $\Rd$ defined on the same probability space $\pspace$. We want to define and manipulate $\E\bra{Y|X}$.
+Let $Y$ be a random variable and $X$ be a random vector in $\Rd$ defined on the
+same probability space $\pspace$. We want to define and manipulate
+$\E\bra{Y|X}$.
 
 There are 2 particular cases
 \begin{enumerate}
@@ -27,9 +29,9 @@ There are 2 particular cases
     The random variable $Z$ is $\sigma(X)$-measurable iff $Z=\phi(X)$ for some function $\phi:\pa{\Rd,\calb\pa{\Rd}}\to\pa{\R,\calb\pa{\R}}$. The corresponding function $\phi$ for $Z=\underbrace{E\bra{Y|X}}_{\text{conditional expectation}}$ is denoted by $\underbrace{\E\bra{Y|X=x}}_\text{conditional expectation function}$.
 \end{remark}
 \begin{remark}
-    The proposition \ref{prop:con_exp_uniqueness} is equivalent to 
+    The proposition \ref{prop:con_exp_uniqueness} is equivalent to
     \begin{align*}
-        &\E\bra{\pa{Y-Z}\mathbbm{1}_B}=0, \quad \forall B\in \sigma(X) \\ \Leftrightarrow &\E\bra{\pa{Y-Z}\psi(X)}=0, \quad \forall \psi\ \text{bounded and meansurable}.
+         & \E\bra{\pa{Y-Z}\mathbbm{1}_B}=0, \quad \forall B\in \sigma(X) \\ \Leftrightarrow &\E\bra{\pa{Y-Z}\psi(X)}=0, \quad \forall \psi\ \text{bounded and meansurable}.
     \end{align*}
 \end{remark}
 
@@ -37,13 +39,13 @@ There are 2 particular cases
     Let $X$ and $\beta$ be random vectors in $\Rd$ such that $X$ and $\beta$ ARE independent, that is $\p_{X,\beta}=\p_X \times \p_\beta$. Let $g:\Rd\to\R$ be a bounded and measurable function. Define $Y=g(X^\top\beta)$. It can be shown that $\E\bra{Y|X=x}=\E\bra{g(x^\top\beta)}$ for all $x\in \text{supp}(X)$.
 \end{exercise}
 \begin{proof}
-    Let $B\in \sigma(X)$. Then $$\E\bra{Y\1\{X\in B\}}=\E\bra{g(X^\top\beta)\1\{X\in B\}}=\int\int g(X^\top b)\1{x\in B}d\p_{\beta,X}(b,x).$$ 
+    Let $B\in \sigma(X)$. Then $$\E\bra{Y\1\{X\in B\}}=\E\bra{g(X^\top\beta)\1\{X\in B\}}=\int\int g(X^\top b)\1{x\in B}d\p_{\beta,X}(b,x).$$
     Since $X$ and $\beta$ are independent, we have $$\p_{\beta,X}(b,x)=\p_X(x)\p_\beta(b).$$
     Therefore, \begin{equation*}
         \begin{split}
-            \E\bra{Y\1\{X\in B\}}&=\int\int g(x^\top b)\1\{x\in B\}d\p_{\beta}(b)d\p_X(x) \\&=\int \E\bra{g(x^\top \beta)}\1\{x\in B\}d\p_X(x)\\
-            &=\E\bra{\E\bra{g(x^\top \beta)}\1\{X\in B\}}\\
-            &=\E\bra{\phi(X)\1\{X\in B\}}
+            \E\bra{Y\1\{X\in B\}} & =\int\int g(x^\top b)\1\{x\in B\}d\p_{\beta}(b)d\p_X(x) \\&=\int \E\bra{g(x^\top \beta)}\1\{x\in B\}d\p_X(x)\\
+                                  & =\E\bra{\E\bra{g(x^\top \beta)}\1\{X\in B\}}            \\
+                                  & =\E\bra{\phi(X)\1\{X\in B\}}
         \end{split}
     \end{equation*}
     where $ \E\bra{g(x^\top \beta)}\equiv \phi(x)$ takes expectation over $\beta$ and is a function of $x$.

@@ -17,14 +17,16 @@
 		\norm{f_m -f}^2_2 = \int_{-\infty}^m \abs{f\pa{x}}^2 dx + \int_m^\infty \abs{f\pa{x}}^2 dx \rightarrow 0
 	\end{equation}
 	as $m\rightarrow \infty$.
-% \begin{exercise}
-% 	If $f$ is symmetric, $\F \bra{f}$ is real-valued.
-% \end{exercise}
-By equation \ref{eq:cauchy}, for all $m,m', \norm{f_m -f_{m'}}_2^2\rightarrow 0$ as $m,m'\rightarrow \infty$, i.e.~$\pa{f_m}$ is a Cauchy sequence. By Plancherel's theorem \ref{prop:plancherel_inverse},
-\begin{equation*}
-    \norm{\F \bra{f_m} -\F\bra{f_{m'}} }_2^2 = \norm{\F \bra{f_m -f_{m'} }}_2^2 = 2\pi \norm{f_m -f_{m'}}_2^2.
-\end{equation*}
-Thus, $\F\bra{f_m}$ is a Cauchy sequence in $L^2\pa{\R}$, so that it admits a limit in $L^2\pa{\R}$, since $L^2\pa{\R}$ is a complete normed space. We can then define the Fourier transform of $f$ to be this limit.
+	% \begin{exercise}
+	% 	If $f$ is symmetric, $\F \bra{f}$ is real-valued.
+	% \end{exercise}
+	By equation \ref{eq:cauchy}, for all $m,m', \norm{f_m -f_{m'}}_2^2\rightarrow
+		0$ as $m,m'\rightarrow \infty$, i.e.~$\pa{f_m}$ is a Cauchy sequence. By
+	Plancherel's theorem \ref{prop:plancherel_inverse},
+	\begin{equation*}
+		\norm{\F \bra{f_m} -\F\bra{f_{m'}} }_2^2 = \norm{\F \bra{f_m -f_{m'} }}_2^2 = 2\pi \norm{f_m -f_{m'}}_2^2.
+	\end{equation*}
+	Thus, $\F\bra{f_m}$ is a Cauchy sequence in $L^2\pa{\R}$, so that it admits a limit in $L^2\pa{\R}$, since $L^2\pa{\R}$ is a complete normed space. We can then define the Fourier transform of $f$ to be this limit.
 \end{remark}
 % \begin{exercise}
 % 	Prove

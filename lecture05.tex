@@ -1,9 +1,11 @@
 \section{Density function and kernel estimation}
 \subsection{Density function}
-We want to estimate the density $f_X$ of $X\in \R$ and will work among classes of densities. For example,
+We want to estimate the density $f_X$ of $X\in \R$ and will work among classes
+of densities. For example,
 \begin{enumerate}
     \item \textbf{continuous densities}
-    \item densities such that for all $x,\ x'\in \R,\ \abs{f_X(x)-f_X(x')}\le M\abs{x-x'}$ for some $M>0$
+    \item densities such that for all $x,\ x'\in \R,\ \abs{f_X(x)-f_X(x')}\le
+              M\abs{x-x'}$ for some $M>0$
     \item densities which are \textbf{monotonically increasing} on $[0,1]$
 \end{enumerate}
 
@@ -23,7 +25,7 @@ A natural estimator of the CDF is the  \textbf{empirical CDF}, defined as
     A kernel is a function $K:\R\to \R$ such that $K\in L^1(\R)$ and $\int K(x)dx=1$.
 \end{definition}
 \begin{definition}[kernel density estimator with kernel $K$ and bandwidth $h$]
-The kernel density estimator of $f_X$ is defined as \begin{equation*}
-    \hat{f}_n(x)=\frac{1}{nh}\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}
-\end{equation*}
+    The kernel density estimator of $f_X$ is defined as \begin{equation*}
+        \hat{f}_n(x)=\frac{1}{nh}\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}
+    \end{equation*}
 \end{definition}

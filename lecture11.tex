@@ -1,8 +1,9 @@
 \section{Treatment Effects}
-\subsection{Setup} We have a dataset $\bra{Y_i,D_i,X_i,Z_i,W_i}_{i=1}^n$ following i.i.d. from a joint distribution.
+\subsection{Setup} We have a dataset $\bra{Y_i,D_i,X_i,Z_i,W_i}_{i=1}^n$ following i.i.d. from a
+joint distribution.
 \begin{itemize}
-    \item $D$ is a binary treatment variable, $D\in\bra{0,1}$. 
-    \item $Y$ is the outcome variable. Here $Y$ is a random variable $Y\in \R$. 
+    \item $D$ is a binary treatment variable, $D\in\bra{0,1}$.
+    \item $Y$ is the outcome variable. Here $Y$ is a random variable $Y\in \R$.
     \item $X,Z,W$ are covariates/additional random variables.
 \end{itemize}
 The model equation (for each individual $i$) is $y_i=y\pa{0}(1-D)+y\pa{1}D$. The potential outcome is $y_i\pa{1},y_i\pa{0}$, which are not observed. We can only observe $y_i=y\pa{D_i}$.
@@ -10,10 +11,15 @@ The model equation (for each individual $i$) is $y_i=y\pa{0}(1-D)+y\pa{1}D$. The
 \subsection{Parameters of Interest}
 \begin{itemize}
     \item Average treatment effect (ATE): $\tau = \E\bra{Y\pa{1}-Y\pa{0}}$
-    \item Conditional average treatment effect (CATE): $\tau(x) = \E\bra{Y\pa{1}-Y\pa{0}|X=x}$. It can be useful if we care about the effect of the treatment on a specific subgroup of the population.
-    \item Average treatment effect on the treated (ATT): $\tau_{\text{ATT}} = \E\bra{Y\pa{1}-Y\pa{0}|D=1}$
-    \item Average treatment effect on the untreated (ATU): $\tau_{\text{ATU}} = \E\bra{Y\pa{1}-Y\pa{0}|D=0}$
-    \item Conditional average treatment effect on the treated (CATT): $\tau_{\text{ATT}}(x) = \E\bra{Y\pa{1}-Y\pa{0}|D=1,X=x}$
+    \item Conditional average treatment effect (CATE): $\tau(x) =
+              \E\bra{Y\pa{1}-Y\pa{0}|X=x}$. It can be useful if we care about the effect of
+          the treatment on a specific subgroup of the population.
+    \item Average treatment effect on the treated (ATT): $\tau_{\text{ATT}} =
+              \E\bra{Y\pa{1}-Y\pa{0}|D=1}$
+    \item Average treatment effect on the untreated (ATU): $\tau_{\text{ATU}} =
+              \E\bra{Y\pa{1}-Y\pa{0}|D=0}$
+    \item Conditional average treatment effect on the treated (CATT):
+          $\tau_{\text{ATT}}(x) = \E\bra{Y\pa{1}-Y\pa{0}|D=1,X=x}$
 \end{itemize}
 
 \subsection{Identification}
@@ -38,27 +44,29 @@ We introduce a new notation for the purpose of another assumption.
 \begin{remark}
     Later we will build estimators using propensity score, called \textbf{inverse propensity score weighting (IPSW) estimator}.
 \end{remark}
-    \begin{assumption}[Common support]\label{ass:comm_supp}
-    The propensity score $\pi(x)$ continuous and bounded between 0 and 1 for all $x\in \text{supp}(X)$ 
+\begin{assumption}[Common support]\label{ass:comm_supp}
+    The propensity score $\pi(x)$ continuous and bounded between 0 and 1 for all $x\in \text{supp}(X)$
 \end{assumption}
 \begin{assumption}[Mean independence]\label{ass:mean_indep}
     The potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ given $X,Z,W$, that is \[\E\bra{Y(d)\mid D,X}=\E\bra{Y(d)\mid X}\]
 \end{assumption}
 Some proposition
 \begin{proposition}
-    For any $Y\in \R$, we have that 
+    For any $Y\in \R$, we have that
     \begin{enumerate}
-        \item the expectation of $\1_{\set{Y(1)<y}}$ conditional on $D=1$ equals to the expectation of $\1_{\set{Y<y}}$ conditional on $D=1$, that is 
-    \begin{equation*}
-        \E\bra{\1_{\set{Y(1)<y}}\mid D=1} = \E\bra{\1_{\set{Y<y}}\mid D=1}
-    \end{equation*}
-    \item By mean independence, $\tau(x) = \E\bra{Y\pa{1}-Y\pa{0}|X=x}=\E\bra{Y\pa{1}|X=x,D=1}-\E\bra{Y\pa{0}|X=x,D=0}$ 
-    \item $\E\bra{Y\pa{1}|X=x,D=1}=$
+        \item the expectation of $\1_{\set{Y(1)<y}}$ conditional on $D=1$ equals to the
+              expectation of $\1_{\set{Y<y}}$ conditional on $D=1$, that is
+              \begin{equation*}
+                  \E\bra{\1_{\set{Y(1)<y}}\mid D=1} = \E\bra{\1_{\set{Y<y}}\mid D=1}
+              \end{equation*}
+        \item By mean independence, $\tau(x) =
+                  \E\bra{Y\pa{1}-Y\pa{0}|X=x}=\E\bra{Y\pa{1}|X=x,D=1}-\E\bra{Y\pa{0}|X=x,D=0}$
+        \item $\E\bra{Y\pa{1}|X=x,D=1}=$
     \end{enumerate}
 \end{proposition}
 \begin{proof}
     Because \[
-       \1\{Y<y\}=\1\{Y(0)\le y\}(1-D) +\1\{Y(1)<Y\}D \]
+        \1\{Y<y\}=\1\{Y(0)\le y\}(1-D) +\1\{Y(1)<Y\}D \]
     We have that
     \begin{align*}
     \end{align*}
@@ -68,5 +76,5 @@ Some proposition
     Under the assumptions \ref{ass:comm_supp} and \ref{ass:mean_indep}, it can be shown that the conditional ATE(x) equals to ATT(x) and ATU(X), that is \[\tau(x)=\tau_{\text{ATT}}(x)=\tau_{\text{ATU}}(x)\]
 \end{proposition}
 \begin{proof}
-    
+
 \end{proof}
