@@ -10,7 +10,13 @@ of densities. For example,
 \end{enumerate}
 
 \subsection{Density function estimation}
-If $X$ has a density $f_X$ , then $f_X(x)=F_X'(x)\ a.e.$ because \begin{equation*}
+First, we introduce a \textbf{histogram estimator}. Assume $f_X:\bra{0,1}\to
+    \R$ and divide the interval $[0,1]$ into $n$ equal non overlapping intervals
+$I_1,\ldots,I_n$ of length $h=1/n$. Define the $n_j=\sum_{i=1}^n
+    \mathbbm{1}_{\{X_i\in I_j\}}$. The histogram estimator is defined as \begin{equation*}
+    \hat{f}_n(x)=\sum_{i=1}^n \mathbbm{1}\{x \in I_j\}\frac{n_j}{nh} = \frac{1}{nh}\sum_{i=1}^n \underbrace{\sum_{j=1}^n \mathbbm{1}\{X_i\in I_j\}\mathbbm{1}\{x\in I_j\}}_{K_h\pa{X_i,x}}.
+\end{equation*}
+If $X$ has a density $f_X$, then $f_X(x)=F_X'(x)\ a.e.$ because \begin{equation*}
     F_X(x)=\int_{-\infty}^x f_X(t)dt=\E\bra{\mathbbm{1}_{\{X\le x\}}}.
 \end{equation*}
 A natural estimator of the CDF is the  \textbf{empirical CDF}, defined as
@@ -20,7 +26,7 @@ A natural estimator of the CDF is the  \textbf{empirical CDF}, defined as
     \begin{split}
         \hat{f}_n(x)=\frac{\hat{F}_X\pa{x+h/2}-\hat{F}_X\pa{x-h/2}}{h}= \frac{1}{nh}\sum_{i=1}^n K\pa{\frac{X_i-x}{h}}
     \end{split}
-\end{equation*} where $K(x)=\mathbbm{1}_{\{X\le \frac{1}{2}\}}$
+\end{equation*} where $K(x)=\mathbbm{1}_{\{x\le \frac{1}{2}\}}$ (is the \textbf{kernel} and $h>0$ is the \textbf{bandwidth}).
 \begin{definition}[kernel function]
     A kernel is a function $K:\R\to \R$ such that $K\in L^1(\R)$ and $\int K(x)dx=1$.
 \end{definition}

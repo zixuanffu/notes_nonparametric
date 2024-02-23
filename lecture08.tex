@@ -1,4 +1,5 @@
 %%%
+
 \subsection{Symmetric kernel}
 \begin{theorem}[Symmetric kernel]\label{thm:sym_ker}
 	Let $f_X\in L^2\pa{\R}, K\in L^2\pa{\R}$ be a symmetric kernel such that
@@ -84,62 +85,4 @@ rate of convergence and the cross-validated estimator is minimax adaptive
 \end{table}
 
 %%%
-\section{MISE and Cross validation}
-\subsection{MISE}
-To define the $\MISE$, we would like
-\begin{equation*}
-	\E\bra{\norm{\hat{f}_X - f_X}^2_2} < \infty.
-\end{equation*}
-We assume $f_X\in L^2\pa{\R}$. We would like as well $\hat{f}_X\in L^2\pa{\R}$. This is true if $K\in L^2\pa{\R}$.
-
-Indeed,
-\begin{equation*}
-	\begin{split}
-		\norm{\hat{f}_X}_2^2 & \leq \frac{2^{n-1}}{\pa{nh}^2} \sum_{i=1}^n \int_\R K\pa{\frac{X_i -x}{h}}^2 dx \\
-		                     & \leq \frac{2^{n-1}}{nh} \int_{\R} K^2\pa{u} du <\infty.
-	\end{split}
-\end{equation*}
-The idea behind this inequality is $\pa{a+b}^2 \leq 2 \pa{a^2 + b^2}$, and then by induction, $\pa{\sum_{i=1}^n a_i }^2 \leq 2^{n-1} \sum_{i=1}^n a_i^2$.
-\subsection{Cross validation}
-Let us write
-\begin{equation*}
-	\begin{split}
-		\mathrm{MISE}\pa{h} & = \E\bra{\int_\R \pa{\hat{f}^h_X\pa{x}-f_X\pa{x} }^2dx}                                                                                  \\
-		                    & = \underbrace{\E\bra{\int_\R \pa{\hat{f}^h_X \pa{x}}^2 dx - 2\int_\R \hat{f}^h_X\pa{x} f_X\pa{x}dx }}_{=I\pa{h}} + \int_\R f_X^2\pa{x}dx
-	\end{split}
-\end{equation*}
-% \cite{rudemo} 
-introduced
-\begin{equation*}
-	\widehat{\mathrm{CV}}\pa{h} = \int_\R \hat{f}_X^2 \pa{x}dx - \underbrace{\frac{2}{n} \sum_{i=1}^n \hat{f}_{X,-i}\pa{X_i}}_{=\hat{A}},
-\end{equation*}
-where $\hat{f}_{X,-i} = \frac{1}{\pa{n-1}h} \sum_{j=1,j\neq i}^n K\pa{\frac{X_j-x}{h}}$. The cross-validated bandwidth is
-\begin{equation*}
-	\hat{h}_{\mathrm{CV}} = \argmin_{h>0 }\widehat{\mathrm{CV}}\pa{h}
-\end{equation*}
-We claim
-\begin{equation*}
-	\frac{1}{2}\E\bra{\hat{A}}= \E\bra{\int_\R \hat{f}_X\pa{x} f_X\pa{x} dx}
-\end{equation*}
-We have
-\begin{equation*}
-	\begin{split}
-		\E\bra{\hat{f}_{X,-1}\pa{X_1}} & = \E_{\p_{X_2}\otimes  \cdot\otimes \p_{X_n}}\bra{\int_\R \hat{f}_{X,-i}\pa{x}f_X\pa{x} dx} \\
-		                               & = \E\bra{\frac{1}{\pa{n-1} h}\sum_{j=2}^n \int_\R K\pa{\frac{X_j-x}{h}}f_X\pa{x} dx}        \\
-		                               & =\frac{1}{h} \int_\R\int_\R K\pa{\frac{z-x}{h}} f_X\pa{z} f_X\pa{x} dz dx
-	\end{split}
-\end{equation*}
-As an exercise, show that this yields the claim.
-
-\begin{theorem}[Oracle inequality]
-	\label{thm:dalelane}
-	Let $f_{\max}$ be such that for all $x$, $f_X\pa{x}\leq f_{\max} <\infty$. Assume the kernel $K$ is such that
-	$\int_\R K^2\pa{u}du<\infty$. $\F\bra{K}\geq 0$ and $\mathrm{supp}\pa{\F\bra{K}}\subseteq [-1,1]$. Then $\hat{f}_X^\ast = \hat{f}_X^{h_{\mathrm{CV}}}$ is such that for all $0<\delta <1$, for all $n\geq 1$,
-	\begin{equation*}
-		\E\bra{\int_\R \pa{\hat{f}^\ast_X \pa{x} - f_X\pa{x}}^2dx} \leq \pa{1+\frac{C}{n^\delta}} \min_{h>\frac{1}{n}} \E\bra{\int \pa{\hat{f}_X^h\pa{x} - f_X\pa{x}}^2 dx} + \frac{C\pa{\log n}^{\frac{\delta}{2}}}{n^{1-\delta}}
-	\end{equation*}
-\end{theorem}
-\begin{remark}
-	The cross-validation bandwidth from theorem \ref{thm:dalelane} is random. The kind of inequality in the the theorem is called \textbf{oracle inequality}, as it is not possible to obtain the values on each side. They involve the unknown $f_X\pa{x}$. The estimation of errors in cross-validation kernel estimation is hard, but in practice it often works well.
-\end{remark}
 

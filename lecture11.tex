@@ -24,19 +24,15 @@ The model equation (for each individual $i$) is $y_i=y\pa{0}(1-D)+y\pa{1}D$. The
 
 \subsection{Identification}
 We need to impose some assumptions in order to identify the parameters.
-\begin{assumption}
-    $\p\pa{D=1}\in \pa{0,1}$
-\end{assumption}
-\begin{assumption}
-    The covariates $X,Z,W$ are such that if $X=X(0)+D\pa{X(1)-X(0)}$, then $X(1)=X(0)$.
-\end{assumption}
-
-\begin{assumption}
-    The potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ given
-\end{assumption}
-\begin{assumption}
-    The potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ given $X,Z,W$
-\end{assumption}
+\begin{enumerate}
+    \item $\p\pa{D=1}\in \pa{0,1}$
+    \item The covariates $X,Z,W$ are such that if $X=X(0)+D\pa{X(1)-X(0)}$, then
+          $X(1)=X(0)$.
+    \item The potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ which is
+          $Y\pa{1},Y\pa{0}\indep D$
+    \item The potential outcome $Y\pa{1},Y\pa{0}$ and $X$ are independent of $D$, that is
+          $$Y\pa{1},Y\pa{0},X \indep D$$
+\end{enumerate}
 We introduce a new notation for the purpose of another assumption.
 \begin{definition}[Propensity score]
     The propensity score is defined as the conditional probability of receiving the treatment given the covariates, that is \[\pi(x)=\p(D=1\mid X=x)\]
@@ -44,37 +40,17 @@ We introduce a new notation for the purpose of another assumption.
 \begin{remark}
     Later we will build estimators using propensity score, called \textbf{inverse propensity score weighting (IPSW) estimator}.
 \end{remark}
-\begin{assumption}[Common support]\label{ass:comm_supp}
-    The propensity score $\pi(x)$ continuous and bounded between 0 and 1 for all $x\in \text{supp}(X)$
-\end{assumption}
-\begin{assumption}[Mean independence]\label{ass:mean_indep}
-    The potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ given $X,Z,W$, that is \[\E\bra{Y(d)\mid D,X}=\E\bra{Y(d)\mid X}\]
-\end{assumption}
-Some proposition
-\begin{proposition}
-    For any $Y\in \R$, we have that
-    \begin{enumerate}
-        \item the expectation of $\1_{\set{Y(1)<y}}$ conditional on $D=1$ equals to the
-              expectation of $\1_{\set{Y<y}}$ conditional on $D=1$, that is
-              \begin{equation*}
-                  \E\bra{\1_{\set{Y(1)<y}}\mid D=1} = \E\bra{\1_{\set{Y<y}}\mid D=1}
-              \end{equation*}
-        \item By mean independence, $\tau(x) =
-                  \E\bra{Y\pa{1}-Y\pa{0}|X=x}=\E\bra{Y\pa{1}|X=x,D=1}-\E\bra{Y\pa{0}|X=x,D=0}$
-        \item $\E\bra{Y\pa{1}|X=x,D=1}=$
-    \end{enumerate}
-\end{proposition}
-\begin{proof}
-    Because \[
-        \1\{Y<y\}=\1\{Y(0)\le y\}(1-D) +\1\{Y(1)<Y\}D \]
-    We have that
-    \begin{align*}
-    \end{align*}
-\end{proof}
+\paragraph{Common support}
+The propensity score $\pi(x)$ continuous and bounded between 0 and 1 for all
+$x\in \text{supp}(X)$ \\
 
-\begin{proposition}
-    Under the assumptions \ref{ass:comm_supp} and \ref{ass:mean_indep}, it can be shown that the conditional ATE(x) equals to ATT(x) and ATU(X), that is \[\tau(x)=\tau_{\text{ATT}}(x)=\tau_{\text{ATU}}(x)\]
-\end{proposition}
-\begin{proof}
-
-\end{proof}
+Sometimes, treatment $D$ is assigned randomly conditional on $X$. We introduce
+the following assumptions
+\paragraph{Unconfoundedness}
+The treatment $D$ is unconfounded with the potential outcome $Y$ given $X$ if
+\begin{equation*}
+    Y\pa{1},Y\pa{0}\indep D\mid X
+\end{equation*}
+\paragraph{Conditional mean independence}
+The potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ given $X,Z,W$,
+that is \[\E\bra{Y(d)\mid D,X}=\E\bra{Y(d)\mid X}\] Later we will show that unconfoundedness implies conditional mean independence.

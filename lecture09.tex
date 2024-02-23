@@ -5,7 +5,7 @@
 \begin{remark}
   We can work with a smaller class of \textit{super smooth} density functions.
   \begin{enumerate}
-    \item $\calp_{\alpha,r}=\set{f\in L^2(\R) \quad \text{such that} \quad \int \exp(\alpha\abs{w}^2)\abs{\phi(w)}^2 dw \le L^2}$ where $\phi=\F\bra{f}$ is the Fourier transform of $f$. We can show that a MISE optimal kernel density estimatro could have a risk less than $C\frac{(\log n)^{1/r}}{n}$.
+    \item $\calp_{\alpha,r}=\set{f\in L^2(\R) \quad \text{such that} \quad \int \exp(\alpha\abs{w}^2)\abs{\phi(w)}^2 dw \le L^2}$ where $\phi=\F\bra{f}$ is the Fourier transform of $f$. We can show that a MISE optimal kernel density estimation could have a risk less than $C\frac{(\log n)^{1/r}}{n}$.
     \item $\calp_{\alpha,r}=\set{f\in L^2(\R) \quad \text{such that} \quad \text{supp}\pa{\phi}\subset\bra{-a,a}}$. In this case, the upper bound is $\frac{a\pi}{n}$.
   \end{enumerate}
 \end{remark}
@@ -85,6 +85,7 @@ One can check that this defines an orthogonal system \textbf{(Exercise)}.
 \begin{equation*}
   \int_{\R^d} \abs{\mathcal F[f]\pa{w_1,...,w_d}}^2\pa{\abs{w_1}^2+...+\abs{w_d}^2}^\beta dw \leq L^2.
 \end{equation*}}
+Here, $\F[f]\pa{w_1,...,w_d}=\int_\Rd e^{iwx} f_X\pa{x}dx$ acts like the coefficients $c_{j_1,...,j_d}=\int_{[0,1]^d} f_X\pa{x} e_{j_1,...,j_d}\pa{x}dx$ in the Fourier series case.
 Note the usual bias-variance decomposition of the mean-squared error,
 \begin{equation*}
   \E\bra{\norm{\hat f_X^T - f_X}^2_2} = \underbrace{\norm{f_X^T - f_X }^2_2}_{b^2=\text{Bias}^2} + \underbrace{\E\bra{\norm{\hat{f}_X^T - f_X^T}_2^2}}_{\sigma^2}.

@@ -5,16 +5,34 @@
   \item \label{ker:rect} $K\pa{x}=\frac{1}{2}\1_{\abs{x}\le \frac{1}{2}}$ the rectangular
   \item\label{ker:gauss} $K\pa{x} = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$, the Gaussian kernel
   \item\label{ker:sinc} $K\pa{x} = \frac{\sin\pa{x}}{\pi x}$, the sinc kernel
-  \item \label{ker:epan} $K\pa{x} = \frac{3}{4}\pa{1-x^2}\1_{\abs{x}\le 1}$, the Epanechnikov kernel
+  \item \label{ker:epan} $K\pa{x} = \frac{3}{4}\max\{0,1-x^2\}=\frac{3}{4}\pa{1-x^2}\1_{\abs{x}\le 1}$, the Epanechnikov kernel
 \end{enumerate}
+\begin{figure*}[!h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/kernels.png}
+  \caption{Kernels}
+\end{figure*}
 \begin{remark}
   Note that the Gaussian kernel is both in $L^1\pa{\R,\calb\pa{\R},dx}$ and in $L^2\pa{\R,\calb\pa{\R},dx}$. The sinc kernel is only in $L^2\pa{\R,\calb\pa{\R},dx}$ but not in $L^1\pa{\R,\calb\pa{\R},dx}$, as the absolute value fails to be integrable. However, we have
   \begin{equation*}
     1 = \lim_{R\rightarrow \infty}\int_{-R}^R \frac{\sin\pa{x}}{\pi x} dx.
   \end{equation*}
 \end{remark}
-
+\begin{remark} The kernel estimator is unbiased when the bandwidth $h$ goes to zero, that is,
+  \begin{equation*}
+    \begin{split}
+      \E\bra{\hat{f}_X\pa{x}} & = \frac{1}{hn}\sum_{i=1}^{n}\E\bra{K\pa{\frac{X_i-x}{h}}}             \\
+                              & = \frac{1}{h}\E\bra{K\pa{\frac{X_1-x}{h}}}   \quad \text{by i.i.i.d.} \\
+                              & = \frac{1}{h}\int_\R K\pa{\frac{y-x}{h}}f_X\pa{y}dy                   \\
+                              & = \frac{1}{h}K\pa{\frac{\cdot}{h}}\ast f_X \pa{x}                     \\
+                              & \to f_X(x)
+    \end{split}
+  \end{equation*}
+  It converges in $L^1(\R)$ in the sense that $$\norm{\frac{1}{h}K(\frac{\cdot}{h})\ast f_X-f_X}_1\to 0$$ where $\norm{f}_1=\int_{\R}\abs{f(x)}dx$
+\end{remark}
 \subsection{Performance analysis}
+For a kernel $K$ estimator with bandwidth $h$, we would like to analyze its
+performance.
 \begin{definition}
   We introduce the quadratic \textbf{risk}
   \begin{equation*}
@@ -31,7 +49,7 @@
     \E\bra{\sup_{x\in \R} \abs{\hat{f}_X\pa{x}-f_X\pa{x}}} = \E\bra{\norm{\hat{f}_X-f_X }_\infty}
   \end{equation*}
 \end{definition}
-Note that $\hat{f}_X$ is a function of $x$ and the observations $X= \pa{X_1,\ldots, X_n}$.
+Note that $\hat{f}_X$ is a function of $x$ and the observations is $X= \pa{X_1,\ldots, X_n}$.
 
 \begin{definition}
   We define the \textbf{bias} of $\hat{f}_X\pa{x}$ by
@@ -61,23 +79,26 @@ Note that $\hat{f}_X$ is a function of $x$ and the observations $X= \pa{X_1,\ldo
 \end{proof}
 
 \begin{proposition}[upper bound of $\sigma^2(x)$]\label{prop:1}
-  Assume that there exists $f_{\max}\in \R$ such that $\forall x\in \R$, $f_X\pa{x}\leq f_{\max}$ and $\int_\R K^2\pa{u}du <\infty$. Then we have, for $C= f_{\max}\int_\R K^2\pa{u}du$,
+  Assume that there exists $f_{\max}\in \R$ such that $\forall x\in \R$, $f_X\pa{x}\leq f_{\max}$ and $\int_\R K^2\pa{u}du <\infty$. Then we have, for any bandwidth $h$, for any $x\in \R$ and for any $n\ge 1$, we have
   \begin{equation*}
-    \forall x\in\R\forall n\geq 1 \forall h>0, \sigma^2\pa{x}\leq \frac{C}{nh}.
+    \sigma^2\pa{x}\leq \frac{C}{nh}.
   \end{equation*}
+  where $C= f_{\max}\int_\R K^2\pa{u}du$.
 \end{proposition}
 \begin{proof}
   First observe that, by identical distribution of $X_1,\ldots, X_n$,
-  \begin{equation*}\label{eq:expectation}
+  \begin{equation}\label{eq:expectation}
     \E\bra{\hat{f}_X\pa{x}} = \frac{1}{n}\sum_{i=1}^n \frac{1}{h}\E\bra{K\pa{\frac{X_i-x}{h}}} = \frac{1}{h}\E\bra{K\pa{\frac{X_1-x}{h}}}.
-  \end{equation*}
+  \end{equation}
 
   Now, using independence in the second line and identical distribution in the
   third line,
   \begin{equation*}
     \begin{split}
-      \sigma^2\pa{x} & = \E\bra{\pa{\frac{1}{n} \sum_{i=1}^n \pa{\frac{1}{h} K\pa{\frac{X_i-x}{h}}} - \E\bra{\hat{f}_X \pa{x}}}^2} \\
-                     & =\frac{1}{n^2} \sum_{i=1}^n\E\bra{ \pa{\frac{1}{h} K\pa{\frac{X_i-x}{h}} - \E\bra{\hat{f}_X \pa{x}}}^2}     \\
+      \sigma^2\pa{x} & = \E\bra{\pa{\frac{1}{n} \sum_{i=1}^n \pa{\frac{1}{h} K\pa{\frac{X_i-x}{h}}} - \E\bra{\hat{f}_X \pa{x}}}^2}                   \\
+                     & =\E\bra{\frac{1}{n^2}\pa{\sum_{i=1}^n \pa{\frac{1}{h} K\pa{\frac{X_i-x}{h}}}-n\E\bra{\hat{f}_X \pa{x}}}^2}                    \\
+                     & =\frac{1}{n^2}\E\bra{\sum_{i=1}^n \pa{\frac{1}{h} K\pa{\frac{X_i-x}{h}}-\E\bra{\hat{f}_X \pa{x}}}^2} \text{ by independence } \\
+                     & =\frac{1}{n^2} \sum_{i=1}^n\E\bra{ \pa{\frac{1}{h} K\pa{\frac{X_i-x}{h}} - \E\bra{\hat{f}_X \pa{x}}}^2}                       \\
                      & = \frac{1}{n} \E\bra{\pa{ \frac{1}{h} K\pa{\frac{X_1-x}{h}}- \E\bra{\hat{f}_X \pa{x}}}^2}
     \end{split}
   \end{equation*}

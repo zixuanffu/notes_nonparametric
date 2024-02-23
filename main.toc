@@ -4,49 +4,51 @@
 \contentsline {paragraph}{Discrete case}{5}{section*.3}%
 \contentsline {paragraph}{Parametric VS Non-Parametric Models}{5}{section*.4}%
 \contentsline {subsection}{\numberline {1.3}Completeness condition}{6}{subsection.1.3}%
-\contentsline {paragraph}{Completeness}{7}{section*.5}%
 \contentsline {section}{\numberline {2}Density function and kernel estimation}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Density function}{7}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Density function estimation}{7}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Kernels estimators}{8}{subsection.2.3}%
-\contentsline {paragraph}{Some kernels}{8}{section*.6}%
+\contentsline {paragraph}{Some kernels}{8}{section*.5}%
 \contentsline {subsection}{\numberline {2.4}Performance analysis}{9}{subsection.2.4}%
-\contentsline {paragraph}{Result}{13}{section*.7}%
-\contentsline {section}{\numberline {3}Sobolev class and symmetric kernel}{14}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Review of Fourier transform}{14}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Sobolev class}{14}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Symmetric kernel}{14}{subsection.3.3}%
-\contentsline {paragraph}{Optimal rate of convergence}{15}{section*.8}%
-\contentsline {paragraph}{Kernel comparison}{16}{section*.9}%
-\contentsline {section}{\numberline {4}MISE and Cross validation}{16}{section.4}%
-\contentsline {subsection}{\numberline {4.1}MISE}{16}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Cross validation}{17}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Extension}{18}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Other types of non-parametric estimators}{18}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Orthogonal series estimators}{18}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Regression Function Estimation}{22}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Introduction: average effect of $X$ on $Y$}{22}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Nadaraya-Watson estimator}{22}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Local Polynomial Estimation}{23}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Treatment Effects}{24}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Setup}{24}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Parameters of Interest}{24}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Identification}{24}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Regression discontinuity design}{26}{subsection.7.4}%
-\contentsline {subsubsection}{\numberline {7.4.1}Sharp RDD}{26}{subsubsection.7.4.1}%
-\contentsline {paragraph}{Preliminaries}{26}{section*.12}%
-\contentsline {paragraph}{Conditions}{26}{section*.13}%
-\contentsline {paragraph}{Estimation}{27}{section*.14}%
-\contentsline {subsubsection}{\numberline {7.4.2}Fuzzy RDD}{27}{subsubsection.7.4.2}%
-\contentsline {paragraph}{Preliminaries}{27}{section*.15}%
-\contentsline {paragraph}{Condition}{27}{section*.16}%
-\contentsline {paragraph}{Estimation}{27}{section*.17}%
-\contentsline {subsection}{\numberline {7.5}Instrumental variable}{28}{subsection.7.5}%
-\contentsline {paragraph}{Preliminaries}{28}{section*.18}%
-\contentsline {paragraph}{Condition}{28}{section*.19}%
-\contentsline {subsubsection}{\numberline {7.5.1}One-sided compliance}{28}{subsubsection.7.5.1}%
-\contentsline {paragraph}{Condition}{29}{section*.20}%
-\contentsline {subsubsection}{\numberline {7.5.2}Two-sided compliance}{29}{subsubsection.7.5.2}%
+\contentsline {paragraph}{Result}{15}{section*.7}%
+\contentsline {section}{\numberline {3}MISE and Cross validation}{15}{section.3}%
+\contentsline {subsection}{\numberline {3.1}MISE}{15}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Cross validation}{16}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Sobolev class and symmetric kernel}{17}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Review of Fourier transform}{17}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Sobolev class}{18}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Symmetric kernel}{18}{subsection.4.3}%
+\contentsline {paragraph}{Optimal rate of convergence}{19}{section*.8}%
+\contentsline {paragraph}{Kernel comparison}{19}{section*.9}%
+\contentsline {subsection}{\numberline {4.4}Extension}{20}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Other types of non-parametric estimators}{20}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Orthogonal series estimators}{20}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Regression Function Estimation}{24}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Introduction: average effect of $X$ on $Y$}{24}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Nadaraya-Watson estimator}{24}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Local Polynomial Estimation}{25}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Treatment Effects}{25}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Setup}{25}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Parameters of Interest}{25}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Identification}{26}{subsection.7.3}%
+\contentsline {paragraph}{Common support}{26}{section*.11}%
+\contentsline {paragraph}{Unconfoundedness}{26}{section*.12}%
+\contentsline {paragraph}{Conditional mean independence}{26}{section*.13}%
+\contentsline {subsection}{\numberline {7.4}Regression discontinuity design}{27}{subsection.7.4}%
+\contentsline {subsubsection}{\numberline {7.4.1}Sharp RDD}{27}{subsubsection.7.4.1}%
+\contentsline {paragraph}{Preliminaries}{27}{section*.14}%
+\contentsline {paragraph}{Conditions}{27}{section*.15}%
+\contentsline {paragraph}{Estimation}{28}{section*.16}%
+\contentsline {subsubsection}{\numberline {7.4.2}Fuzzy RDD}{28}{subsubsection.7.4.2}%
+\contentsline {paragraph}{Preliminaries}{28}{section*.17}%
+\contentsline {paragraph}{Condition}{28}{section*.18}%
+\contentsline {paragraph}{Estimation}{28}{section*.19}%
+\contentsline {subsection}{\numberline {7.5}Instrumental variable}{29}{subsection.7.5}%
+\contentsline {paragraph}{Preliminaries}{29}{section*.20}%
 \contentsline {paragraph}{Condition}{29}{section*.21}%
-\contentsline {paragraph}{Estimation}{29}{section*.22}%
-\contentsline {subsection}{\numberline {7.6}Estimation methods: (Augmented) Inverse probability Weighting (AIPW)}{30}{subsection.7.6}%
+\contentsline {subsubsection}{\numberline {7.5.1}One-sided compliance}{29}{subsubsection.7.5.1}%
+\contentsline {paragraph}{Condition}{30}{section*.22}%
+\contentsline {subsubsection}{\numberline {7.5.2}Two-sided compliance}{30}{subsubsection.7.5.2}%
+\contentsline {paragraph}{Condition}{30}{section*.23}%
+\contentsline {paragraph}{Estimation}{30}{section*.24}%
+\contentsline {subsection}{\numberline {7.6}Estimation methods: (Augmented) Inverse probability Weighting (AIPW)}{31}{subsection.7.6}%
