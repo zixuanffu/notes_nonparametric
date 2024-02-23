@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1708722315.15094 "c:/Users/nuc/OneDrive/TSE/Cours/S2/Econometrics 2/Notes/notes_nonparametric/main.tex" "main.pdf" "main" 1708722316.29349 0
+["pdflatex"] 1708722721.11233 "c:/Users/nuc/OneDrive/TSE/Cours/S2/Econometrics 2/Notes/notes_nonparametric/main.tex" "main.pdf" "main" 1708722722.23638 0
   "c:/Users/nuc/.texlive2023/texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk" 1707253669 8424 2bc83485e4b63b49d8d7dcc30b5f19d5 ""
-  "c:/Users/nuc/OneDrive/TSE/Cours/S2/Econometrics 2/Notes/notes_nonparametric/main.tex" 1708554175 1077 cde5844184a7c36a912b8b0c4d41023f ""
+  "c:/Users/nuc/OneDrive/TSE/Cours/S2/Econometrics 2/Notes/notes_nonparametric/main.tex" 1708722718 1138 f87ea38ded2b657863a0984660e10a32 ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1707174274 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1707175065 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcss0700.tfm" 1707174741 1536 e5428b375c095aa4874fb47053e1d4fc ""
@@ -137,12 +137,12 @@
   "lecture08.tex" 1708718313 4139 3b3abca19223b474dbb71d7bca23480c ""
   "lecture09.tex" 1708719925 8766 c3739a5ce65106dca009bbeccbf27cf8 ""
   "lecture10.tex" 1708720804 2560 dbe3409cae39b33516fa302051198951 ""
-  "lecture11.tex" 1708722313 2925 a13499dd7d8f521e4ac61abe2d6772db ""
+  "lecture11.tex" 1708722350 2925 a13499dd7d8f521e4ac61abe2d6772db ""
   "lecture12.tex" 1708722249 8811 b99fbefb028afd884feea22c3291baee ""
-  "main.aux" 1708722316 7995 d67fd0b2396cde8be7aae3b196192d5e "pdflatex"
-  "main.out" 1708722316 5858 b2d5d3ffb3cb2f1eeec7fd33cbc3f63c "pdflatex"
-  "main.tex" 1708554175 1077 cde5844184a7c36a912b8b0c4d41023f ""
-  "main.toc" 1708722316 4192 c89a84b571859b787e0568cceec565c4 "pdflatex"
+  "main.aux" 1708722722 7995 d67fd0b2396cde8be7aae3b196192d5e "pdflatex"
+  "main.out" 1708722722 5858 b2d5d3ffb3cb2f1eeec7fd33cbc3f63c "pdflatex"
+  "main.tex" 1708722718 1138 f87ea38ded2b657863a0984660e10a32 ""
+  "main.toc" 1708722722 4192 c89a84b571859b787e0568cceec565c4 "pdflatex"
   "newcommand.tex" 1708554039 4291 fb31197448ce0a39c46b459b35c377e7 ""
   (generated)
   "main.aux"
