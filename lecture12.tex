@@ -59,10 +59,9 @@ First, let's recall the definition of conditional mean independence:
 \end{definition} Naturally local conditional mean independence in a neighborhood $\caln$ is defined as \begin{equation*}
     \E\bra{\phi(U)\psi(V)\mid X=x} = \E\bra{\phi(U)\mid X=x}\E\bra{\psi(V)\mid X=x}
 \end{equation*} for almost every $x\in \caln$.
-\paragraph{Condition}
-Now we are ready to move from \emph{sharp RDD} to \emph{fuzzy RDD}. In the
-fuzzy RDD, the treatment $D$ is not exactly determined by $X$ but instead
-satisfies the following condition to create a discontinuity at $c$: The
+\paragraph{Condition} Now we are ready to move from \emph{sharp RDD} to \emph{fuzzy
+    RDD}. In the fuzzy RDD, the treatment $D$ is not exactly determined by $X$ but
+instead satisfies the following condition to create a discontinuity at $c$: The
 propensity score function $\pi(x)$ is continuous on $(c-\epsilon,c)$ and
 $(c,c+\epsilon)$ for some $\epsilon>0$ and $\lim_{x\to c^+}\pi(x)\neq
     \lim_{x\to c^-}\pi(x)$. We also loosen the mean independence condition to local
@@ -78,9 +77,8 @@ Since we depart from sharp RDD, the conditional ATE at $c$ is now defined as the
 \begin{proof}
 
 \end{proof}
-\paragraph{Estimation}
-We can make use of local polynomial estimator to estimate the denominator and
-the numerator separately for $tau(c)$.
+\paragraph{Estimation} We can make use of local polynomial estimator to estimate
+the denominator and the numerator separately for $tau(c)$.
 
 \subsection{Instrumental variable}
 
@@ -92,25 +90,23 @@ the following model:
 \begin{equation}
     \begin{split}
         Y & = Y(0,0)+Z\pa{Y(1,0)-Y(0,0)}+D\pa{Y(0,1)-Y(0,0)} \\
-          & + DZ\pa{Y(1,1)-Y(0,1)-Y(1,0)+Y(0,0)}
+        & + DZ\pa{Y(1,1)-Y(0,1)-Y(1,0)+Y(0,0)}
     \end{split}
 \end{equation}
 and \begin{equation}
     D=D(0)+Z\pa{D(1)-D(0)}
 \end{equation}
-\paragraph{Preliminaries}
-We define the following:
+\paragraph{Preliminaries} We define the following:
 \begin{itemize}
     \item One-sided compliance: $P\pa{D(0)=0}=0$ which means there is no always taker or
           defiers.
     \item two-sided compliance: $P\pa{D(0)=0}\in (0,1)$ and $P\pa{D(1)=1}\in (0,1)$.
 \end{itemize}
-\paragraph{Condition}
-We need to impose that the assignment $Z$ is independent of the potential
-outcome $Y(z,d)$ and the treatment $D$ (given $X$). From now on we omitted the
-conditioning on $X$ for simplicity. This is the \emph{exclusion restriction}
-assumption. It is similar to $\E\bra{\epsilon\mid X,Z}=0$ assumption in
-standard linear IV model.
+\paragraph{Condition} We need to impose that the assignment $Z$ is independent of
+the potential outcome $Y(z,d)$ and the treatment $D$ (given $X$). From now on
+we omitted the conditioning on $X$ for simplicity. This is the \emph{exclusion
+    restriction} assumption. It is similar to $\E\bra{\epsilon\mid X,Z}=0$
+assumption in standard linear IV model.
 
 \begin{definition}[Local average treatment effect (LATE)]
     The local average treatment effect is defined as \begin{equation*}
@@ -133,8 +129,8 @@ Instead of discussing ATE, we define a new set of parameters called
         \text{ITT}_{Y\mid D(1)-D(0)=1} = \E\bra{Y(1,1)-Y(0,1)\mid D(1)-D(0)=1}
     \end{equation*}
 \end{definition}
-\paragraph{Condition}
-Under the one-sided compliance, we need to make the following assumption:
+\paragraph{Condition} Under the one-sided compliance, we need to make the following
+assumption:
 \begin{itemize}
     \item If $D(1)=0$ (never taker), then $Y(1,0)=Y(0,0)$.
     \item If $D(1)=1$ (compiler), then $Y(0,d)=Y(1,d)$ for $d=0,1$.
@@ -178,5 +174,3 @@ We can estimate $\tau_{\text{LATE}}$ by \begin{equation*}
     \frac{\E\bra{Y \mid Z=1}-\E\bra{Y\mid Z=0}}{\E\bra{D\mid Z=1}-\E\bra{D\mid Z=0}}=\frac{Cov(Y,Z)}{Cov(D,Z)}
 \end{equation*}
 
-\subsection{Estimation methods: (Augmented) Inverse probability Weighting (AIPW)}
-\textit{tutorial 4}

@@ -29,26 +29,28 @@
 \contentsline {subsection}{\numberline {6.3}Local Polynomial Estimation}{25}{subsection.6.3}%
 \contentsline {section}{\numberline {7}Treatment Effects}{25}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Setup}{25}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Parameters of Interest}{25}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Identification}{26}{subsection.7.3}%
-\contentsline {paragraph}{Common support}{26}{section*.11}%
-\contentsline {paragraph}{Unconfoundedness}{26}{section*.12}%
-\contentsline {paragraph}{Conditional mean independence}{26}{section*.13}%
-\contentsline {subsection}{\numberline {7.4}Regression discontinuity design}{27}{subsection.7.4}%
-\contentsline {subsubsection}{\numberline {7.4.1}Sharp RDD}{27}{subsubsection.7.4.1}%
-\contentsline {paragraph}{Preliminaries}{27}{section*.14}%
-\contentsline {paragraph}{Conditions}{27}{section*.15}%
-\contentsline {paragraph}{Estimation}{28}{section*.16}%
-\contentsline {subsubsection}{\numberline {7.4.2}Fuzzy RDD}{28}{subsubsection.7.4.2}%
-\contentsline {paragraph}{Preliminaries}{28}{section*.17}%
-\contentsline {paragraph}{Condition}{28}{section*.18}%
-\contentsline {paragraph}{Estimation}{28}{section*.19}%
-\contentsline {subsection}{\numberline {7.5}Instrumental variable}{29}{subsection.7.5}%
-\contentsline {paragraph}{Preliminaries}{29}{section*.20}%
-\contentsline {paragraph}{Condition}{29}{section*.21}%
-\contentsline {subsubsection}{\numberline {7.5.1}One-sided compliance}{29}{subsubsection.7.5.1}%
-\contentsline {paragraph}{Condition}{30}{section*.22}%
-\contentsline {subsubsection}{\numberline {7.5.2}Two-sided compliance}{30}{subsubsection.7.5.2}%
-\contentsline {paragraph}{Condition}{30}{section*.23}%
-\contentsline {paragraph}{Estimation}{30}{section*.24}%
-\contentsline {subsection}{\numberline {7.6}Estimation methods: (Augmented) Inverse probability Weighting (AIPW)}{31}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.2}Parameters of Interest}{26}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Randomized experiment}{26}{subsection.7.3}%
+\contentsline {paragraph}{Estimator (no stratum)}{27}{section*.11}%
+\contentsline {paragraph}{Estimator (with stratum)}{27}{section*.12}%
+\contentsline {subsection}{\numberline {7.4}Randomized experiment based on observables}{27}{subsection.7.4}%
+\contentsline {paragraph}{Common support}{28}{section*.13}%
+\contentsline {paragraph}{Estimator}{28}{section*.14}%
+\contentsline {subsection}{\numberline {7.5}Regression discontinuity design}{29}{subsection.7.5}%
+\contentsline {subsubsection}{\numberline {7.5.1}Sharp RDD}{29}{subsubsection.7.5.1}%
+\contentsline {paragraph}{Preliminaries}{29}{section*.15}%
+\contentsline {paragraph}{Conditions}{29}{section*.16}%
+\contentsline {paragraph}{Estimation}{30}{section*.17}%
+\contentsline {subsubsection}{\numberline {7.5.2}Fuzzy RDD}{30}{subsubsection.7.5.2}%
+\contentsline {paragraph}{Preliminaries}{30}{section*.18}%
+\contentsline {paragraph}{Condition}{30}{section*.19}%
+\contentsline {paragraph}{Estimation}{31}{section*.20}%
+\contentsline {subsection}{\numberline {7.6}Instrumental variable}{31}{subsection.7.6}%
+\contentsline {paragraph}{Preliminaries}{31}{section*.21}%
+\contentsline {paragraph}{Condition}{31}{section*.22}%
+\contentsline {subsubsection}{\numberline {7.6.1}One-sided compliance}{32}{subsubsection.7.6.1}%
+\contentsline {paragraph}{Condition}{32}{section*.23}%
+\contentsline {subsubsection}{\numberline {7.6.2}Two-sided compliance}{33}{subsubsection.7.6.2}%
+\contentsline {paragraph}{Condition}{33}{section*.24}%
+\contentsline {paragraph}{Estimation}{33}{section*.25}%
+\contentsline {subsection}{\numberline {7.7}Differences in Differences}{33}{subsection.7.7}%

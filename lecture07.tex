@@ -27,7 +27,7 @@ introduced
 \begin{equation*}
 	\widehat{\mathrm{CV}}\pa{h} = \int_\R \hat{f}_X^2 \pa{x}dx - \underbrace{\frac{2}{n} \sum_{i=1}^n \hat{f}_{X,-i}\pa{X_i}}_{=\hat{A}},
 \end{equation*}
-where $\hat{f}_{X,-i} = \frac{1}{\pa{n-1}h} \sum_{j=1,j\neq i}^n K\pa{\frac{X_j-x}{h}}$. The cross-validated bandwidth is
+where $\hat{f}_{X,-i}\pa{x} = \frac{1}{\pa{n-1}h} \sum_{j=1,j\neq i}^n K\pa{\frac{X_j-x}{h}}$. The cross-validated bandwidth is
 \begin{equation*}
 	\hat{h}_{\mathrm{CV}} = \argmin_{h>0 }\widehat{\mathrm{CV}}\pa{h}
 \end{equation*}

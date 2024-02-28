@@ -1,12 +1,39 @@
 \section{Treatment Effects}
-\subsection{Setup} We have a dataset $\bra{Y_i,D_i,X_i,Z_i,W_i}_{i=1}^n$ following i.i.d. from a
-joint distribution.
+\subsection{Setup} We have a dataset $\bra{Y_i,D_i,X_i,Z_i,W_i}_{i=1}^n$.
 \begin{itemize}
     \item $D$ is a binary treatment variable, $D\in\bra{0,1}$.
     \item $Y$ is the outcome variable. Here $Y$ is a random variable $Y\in \R$.
-    \item $X,Z,W$ are covariates/additional random variables.
+    \item $X,Z,W$ are covariates/additional random variables. If we are to make use of them, they need to satisfy the following conditions: if $X=X\pa{0}+D\pa{X\pa{1}-X\pa{0}}$, then $X(0)=X(1)$ a.s.
 \end{itemize}
 The model equation (for each individual $i$) is $y_i=y\pa{0}(1-D)+y\pa{1}D$. The potential outcome is $y_i\pa{1},y_i\pa{0}$, which are not observed. We can only observe $y_i=y\pa{D_i}$.
+\begin{proposition}
+    For any $y\in \R$, we have
+    \begin{equation*}
+        \p\pa{Y(1)\le y \mid D=1} =\E\bra{\1\{Y(1)\le y\}\mid D=1}=\E\bra{\1\{Y\le y\}\mid D=1}
+    \end{equation*}
+    Similarly, we have $\p\pa{Y(0)\le y \mid D=0} =\E\bra{\1\{Y\le y\mid D=0\}}$.
+\end{proposition}
+\begin{proof}
+    Let $B=\{0\},\{1\}$ or $\{0,1\}$. Then
+    \begin{align*}
+        \E\bra{\1\{Y\le y\}\1\{D\in B\}} & = \E\bra{\1\{Y(1)D+Y(0)(1-D)\le y\}\1\{D\in B\}}                               \\
+                                         & = \E\bra{\1\{Y(1)\le y\}D\1\{D\in B\}}+E\bra{\1\{Y(0)\le y\}(1-D)\1\{D\in B\}}
+    \end{align*}
+    When $B=\{1\}$, we have
+    \begin{align*}
+        \E\bra{\1\{Y\le y\}\1\{D=1\}} & = \E\bra{\1\{Y(1)\le y\}D\1\{D=1\}}  +0 \\
+                                      & = \E\bra{\1\{Y(1)\le y\}\1\{D=1\}}
+    \end{align*}
+\end{proof}
+
+On a side note, we have the following lemma:
+\begin{equation*}
+    \E\bra{Y \mid X\ \text{is some event}}=\frac{\E\bra{Y\1\{X\}}}{\p\{X\}}
+\end{equation*}
+Therefore, showing that $\E\bra{\1\{Y\le y\}\1\{D=1\}}=\E\bra{\1\{Y(1)\le y\}\1\{D=1\}}$ is equivalent to showing $\E\bra{\1\{Y(1)\le y\}\mid D=1}=\E\bra{\1\{Y\le y\}\mid D=1}$.
+\begin{remark}
+    To think of it an easier way if that $Y=f(D)$ is a function of $D$ where $f(1)=Y(1)$ and $f(0)=Y(1)$. Naturally, we have $\E\bra{\1\{Y\le y\}\mid D=1}=\E\bra{\1\{f(D=1)\le y\}\mid D=1}=\E\bra{\1\{Y(1)\le y\}\mid D=1}$
+\end{remark}
 
 \subsection{Parameters of Interest}
 \begin{itemize}
@@ -22,35 +49,123 @@ The model equation (for each individual $i$) is $y_i=y\pa{0}(1-D)+y\pa{1}D$. The
           $\tau_{\text{ATT}}(x) = \E\bra{Y\pa{1}-Y\pa{0}|D=1,X=x}$
 \end{itemize}
 
-\subsection{Identification}
-We need to impose some assumptions in order to identify the parameters.
-\begin{enumerate}
-    \item $\p\pa{D=1}\in \pa{0,1}$
-    \item The covariates $X,Z,W$ are such that if $X=X(0)+D\pa{X(1)-X(0)}$, then
-          $X(1)=X(0)$.
-    \item The potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ which is
-          $Y\pa{1},Y\pa{0}\indep D$
-    \item The potential outcome $Y\pa{1},Y\pa{0}$ and $X$ are independent of $D$, that is
-          $$Y\pa{1},Y\pa{0},X \indep D$$
-\end{enumerate}
-We introduce a new notation for the purpose of another assumption.
+Depending on the design of the experiment we specify the identification
+requirements for the parameters of interest.
+
+\subsection{Randomized experiment}
+The treatment is randomly assigned to individuals, which is equivalent to
+saying that \begin{equation}\label{eq:random_experiment}
+    Y(0),Y(1),W \indep D
+\end{equation}
+This is a rather strong assumption. Under this assumption, $\p_{Y(1),X}$ and $\p_{Y(0),X}$ are identified.
+
+We introduce an estimator for the ATE under the random experiment assumption.
+\paragraph{Estimator (no stratum)} The group mean difference estimator is defined
+as
+\begin{equation*}
+    \widehat{ATT}=\frac{1}{n_T}\sum_{i\in T} Y_i-\frac{1}{n_C}\sum_{i\in C} Y_i
+\end{equation*}
+The variance is estimated as
+\begin{equation*}
+    \widehat{\text{Var}\pa{\widehat{ATT}}}=\frac{1}{n_T}\hat{\sigma}_T^2+\frac{1}{n_C}\hat{\sigma}_C^2
+\end{equation*}
+Asymptotic normality holds under ususal assumptions.
+The group mean difference estimator is the \textbf{least square estimator} of $\alpha_1$ in $Y=\alpha_0+\alpha_1D+\epsilon$ with $\E[\epsilon]=\E[\epsilon\mid D]=0$.
+We can not test the assumption \ref{eq:random_experiment} directly. However, we can test its implication (necessary condition, so to speak). For example, it implies that $\E[D\mid W]=0$ (???). Therefore, we can test this implication by regressing $W$ (or any function of $W$) on $D$ with $W=\alpha_0+\alpha_1 D+\epsilon$ ( $\E[\epsilon]=\E[\epsilon\mid D]=0$) and test $H_0:\alpha_1=0$.
+\paragraph{Estimator (with stratum)} The group mean difference estimator is defined
+as
+\begin{equation*}
+    \widehat{ATT}=\sum_{s=1}^S \widehat{ATT}_s\frac{n_s}{n}
+\end{equation*}
+The variance is estimated as
+\begin{equation*}
+    \widehat{\text{Var}\pa{\widehat{ATT}}}=\sum_{s=1}^S \frac{n_s}{n}\hat{\sigma}_s^2
+\end{equation*}
+
+\begin{remark}
+    The more the strata we have, the more precise the estimator is (the variance is smaller?). However, we want to have observations in both $T$ and $C$ in each stratum, so they can not be too small.
+\end{remark}
+
+\subsection{Randomized experiment based on observables}
+Now we introduce a new notation for the purpose of another assumption.
 \begin{definition}[Propensity score]
     The propensity score is defined as the conditional probability of receiving the treatment given the covariates, that is \[\pi(x)=\p(D=1\mid X=x)\]
 \end{definition}
 \begin{remark}
     Later we will build estimators using propensity score, called \textbf{inverse propensity score weighting (IPSW) estimator}.
 \end{remark}
-\paragraph{Common support}
-The propensity score $\pi(x)$ continuous and bounded between 0 and 1 for all
-$x\in \text{supp}(X)$ \\
+\begin{proposition}
+    For all $x\in supp(X)$ and $\pi \in supp(\pi(X))$, we have \begin{equation*}
+        \E\bra{\1\set{X\le x} \mid D=1, \pi(X)=\pi}= \E\bra{\1\set{X\le x} \mid D=1, X=x}
+    \end{equation*} Note that we define $\p(X\le x \mid D=1, \pi(X)=\pi)$ as $\E\bra{\1\set{X\le x} \mid D=1, \pi(X)=\pi}$.
+\end{proposition}
 
-Sometimes, treatment $D$ is assigned randomly conditional on $X$. We introduce
-the following assumptions
-\paragraph{Unconfoundedness}
-The treatment $D$ is unconfounded with the potential outcome $Y$ given $X$ if
-\begin{equation*}
-    Y\pa{1},Y\pa{0}\indep D\mid X
-\end{equation*}
-\paragraph{Conditional mean independence}
-The potential outcome $Y\pa{1},Y\pa{0}$ are independent of $D$ given $X,Z,W$,
-that is \[\E\bra{Y(d)\mid D,X}=\E\bra{Y(d)\mid X}\] Later we will show that unconfoundedness implies conditional mean independence.
+Sometimes, we can not completely randomize the experiment, but we can randomize
+the treatment conditional on some observables, which is equivalent to saying
+that
+\begin{equation}\label{eq:random_experiment_observables}
+    Y(0),Y(1),W \indep D \mid X
+\end{equation} This is called \textbf{unconfoundedness}
+A weaker version is conditional mean independence:
+$\E\bra{Y(1)\mid D,X}=\E\bra{Y(1)\mid X}$ and $\E\bra{Y(0)\mid D,X}=\E\bra{Y(0)\mid X}$.
+Unconfoundedness implies conditional mean independence.
+
+\paragraph{Common support} The propensity score $\pi(x)$ continuous and bounded between 0 and 1 for all
+$x\in \text{supp}(X)$. We add the assumption of common support in order to
+develop the following equality, and to build new formula for estimator based on
+these equalities.
+
+For the following equalities, we need the weaker assumption -- conditional mean
+independence $\E\bra{Y(1)\mid D,X}=\E\bra{Y(1)\mid X}$
+\begin{proposition}[Conditional treatment effect]
+    For all $x\in supp(X)$ and $\pi \in supp(\pi(X))$, we have
+    \begin{equation}
+        \begin{split}
+            ATE(x)=ATT(x)= ATU(x) & = \E\bra{Y(1)-Y(0) \mid X=x}                          \\
+            & = \E\bra{Y(1)\mid X=x, D=1}-\E\bra{Y(0)\mid X=x, D=0} \\
+            & = \E\bra{Y\mid X=x, D=1}-\E\bra{Y\mid X=x, D=0}       \\
+            & = \mu_1(x)-\mu_0(x)
+        \end{split}
+    \end{equation}
+    where
+    \begin{align}
+        \E\bra{Y\mid X=x, D=1} & =\frac{\E[DY|X=x]}{\pi(x)}       \\
+        \E\bra{Y\mid X=x, D=0} & =\frac{\E[(1-D)Y|X=x]}{1-\pi(x)}
+    \end{align}
+
+\end{proposition}
+
+From the above equalities, we give another proposition
+\begin{proposition}[Unconditional treatment effect]
+    By definition, we have
+    \begin{align}
+        ATE & =\E\bra{ATE(X)}=\E\bra{\frac{DY}{\pi(X)}-\frac{(1-D)Y}{1-\pi(X)}}            \\
+        ATT & =\E\bra{ATT(X)\mid D=1}=\frac{1}{P(D=1)}\E\bra{\frac{(D-\pi(X))Y}{1-\pi(X)}} \\
+    \end{align}
+\end{proposition}
+
+\paragraph{Estimator} An estimator for ATT and ATE is defined as
+\begin{align}
+    \widehat{ATE} & = \frac{1}{n}\sum_{i=1}^n \pa{\hat{\mu}_1(X_i)-\hat{\mu}_0(X_i)}              \\
+    \widehat{ATT} & =\frac{\sum_{i=1}^n D_i(\hat{\mu}_i(X_i)-\hat{\mu}_0(X_i))}{\sum_{i=1}^n D_i}
+                  &
+\end{align}
+The Inverse propensity score weighting (IPSW) estimator for ATT and ATE is defined as
+\begin{align}
+    \widehat{ATE} & = \frac{1}{n}\sum_{i=1}^n \pa{\frac{D_iY_i}{\hat{\pi}(X_i)}-\frac{(1-D_i)Y_i}{1-\hat{\pi}(X_i)}} \\
+    \widehat{ATT} & =\frac{1}{\sum_i D_i}\sum_{i=1}^n \frac{(D_i-\hat{\pi}(X_i))Y_i}{1-\hat{\pi}(X_i)}
+\end{align}
+
+In order to analyze the Asymptotic Properties of the IPSW estimator, it is
+convenient to impose the following assumptions on the propensity score
+$\pi(x)$: There exists a $\eta\in (0,1)$ such that for all $x\in supp(X)$, we
+have $\eta\le \pi(x)\le 1-\eta$. This is called the \textbf{no overlap}
+assumption.
+
+The estimators can sometimes be asymptotically normal if the functions can be
+well estimated. This is relatively manageable if the rate of convergence is
+parametric (for example we know the functional form up to a finite dimensional
+parameter). When the functions are estimated nonparametrically this is more
+difficult because of possible slow rate of estimation of those.
+
+    {\color{red} I am completely oblivious to any assumption related to support, the nuances between surely and almost surely.}

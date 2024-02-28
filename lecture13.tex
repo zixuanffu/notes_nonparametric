@@ -1,0 +1,39 @@
+\subsection{Differences in Differences}
+In this section, we will make use of panel data, with two periods and two
+regions. In the data, the observables are $Y_0,Y_1, R$ (period 0 and period 1
+outcome and region), and $X$ (covariates). In our model, the treatment variable
+is $D=Rt$. This means that in period 0, no one is treated. In period 1, only
+people in region 1 are treated. The model setup is a \emph{natural experiment}.
+We can write the model as
+\begin{equation*}
+    Y_t=Y_t(0)+D\pa{Y_t(1)-Y_t(0)}, \forall t\in\{0,1\}
+\end{equation*}
+This leads to the following definition for our familiar parameter of interests:
+\begin{equation*}
+    ATE(x)=ATT(x)=\E\bra{Y_1(1)-Y_1(0)\mid X=x,R=1}
+\end{equation*}
+Similar to before, we need to impose some sort of independence assumption for identification. Let's call it \textbf{equal trend}
+\begin{equation*}\label{eq:equal_trend}
+    \E[Y_1(0)-Y_0(0)\mid X,R=1]=\E[Y_1(0)-Y_0(0)\mid X,R=0]
+\end{equation*}
+which is saying that if there were no treatment, region 1 and region 2 would have the same trend.
+Therefore, we can identify the ATE by
+\begin{equation} \label{eq:did}
+    \begin{split}
+        ATE(x)&=\E\bra{Y_1(1)-Y_0(0)+Y_0(0)-Y_1(0)\mid X=x,R=1} \\
+        &= \E\bra{Y_1(1)-Y_0(0)\mid X=x,R=1}-\E\bra{Y_1(0)-Y_0(0)\mid X=x,R=0} \\
+        &= \E\bra{Y_1-Y_0\mid R=1,X=1}-\E\bra{Y_1-Y_0\mid R=0,X=1}
+    \end{split}
+\end{equation}
+
+The equation \ref{eq:did} is the \emph{difference in differences} estimator.
+
+As a matter of fact, conditional mean independence \begin{assumption}For all $(t,r,x) \in \set{0,1}\times \pa{\set{0,1}\times supp(X) \cap supp(R,X)}$, we have $\E\bra{Y_t(0) \mid R=r,X=x}=\E\bra{Y_t(0) \mid X=x}$.
+\end{assumption}implies equal trend assumption \eqref{eq:did}.
+
+\begin{remark}
+    Suppose now we would need a larger vector $\tilde{X}=(X^\top,U^\top)$ to condition on for the conditional mean independence (the treatment is assigned conditioned on observables and unobservables).
+    For the above independence to hold and $\E\bra{Y_t(0) \mid X=x, U=u}= \E\bra{Y_t(0) \mid X=x}+c(u)$, \textit{we need that the conditional expectation function is additively separable in $u$}.  Because $c(u)$ is time invariant, the equal trend assumption (condition on $X$ since we can not condition on unobservable $\tilde{X}$) holds while the conditional mean independence assumption (on $X$) doesn't hold.
+    This is the usual advantage of panel data compared to only cross-sectional data.
+\end{remark}
+
